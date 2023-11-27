@@ -1,0 +1,87 @@
+# CLICK SAVE!
+# TODO: 1 - Guy, 0 - Lady
+# TODO: gender_goals - 1 - Guys, 0 - Ladies, 2 - Both
+# TODO: get new ad request:
+# i am a guy who wants to meet a lady
+# my gender 1, gender_goals = 0
+# then i need gender = 0,
+# so i need to find gender 0 and gender_goals 1
+
+# i am a guy who wants to meet a guy
+# my gender 1, gender_goals = 1
+# so i need to find gender 1 and gender_goals 1
+
+# i am a lady who wants to meet a guy
+# my gender 0, gender_goals = 1
+# i need to find gender 1 and gender_goals 0
+
+# (gender_goals = (genderofme or 2)) and gender_goalsofme = (gender or 2) and fr*fr_me and dts*dts_me and ntw*ntw_me
+
+# TODO: if any reaction is done, we insert both into reactions table
+
+
+# (id INTEGER PRIMARY KEY,
+gender integer,
+campus text,
+program text,
+course integer,
+frd_goal integer,
+dts_goal integer,
+ntw_goal integer,
+gender_goals integer,
+photo_id integer,
+ad_text text)''')
+
+# select id (woman) from users
+# JOIN matches ON users.id (woman) = matches.id (woman)
+# WHERE matches.reaction != 0 AND *matching conditions* AND id NOT IN (select match_id from matches where matches.id = users.id) LIMIT 1;
+# removing -1
+# rename matches to reactions
+# 2 - both, 1 - i want girls, 0 - i want boys
+# dating = full correlation
+# others - any
+# TODO: reactions: 0 dislike, 1 like, 2 match
+# TODO: YAML FILE WITH ALL NAMES
+
+
+
+
+
+'''
+ADD THEM IN THE FUTURE
+             'interests': {
+                 'Business💸': False,
+                 'Finances📈': False,
+                 'Oratory🎙️': False,
+                 'Marketing📱': False,
+                 'UX/UI🤳': False,
+                 'Arts🎨': False,
+                 'Acting🎭': False,
+                 'Photography📸': False,
+                 'Cinema🎥': False,
+                 'Dancing💃': False,
+                 'Music🎧': False,
+                 'Sports & Health💪': False,
+                 'Travelling🏕️': False,
+                 'Fiction📚': False,
+                 'Series👓': False,
+                 'Programming👨‍💻': False,
+                 'Sciences🔬': False,
+                 'Stand-ups🎤': False,
+                 'Artsy lifestyle🖼️': False,
+                 'Parties🪩': False,
+                 'Board Games🎲': False,
+                 'Animals🐾': False,
+             },'''
+
+
+answers_dict = {"gender": ['I am a Guy ‍👨‍💼', 'I am a Lady ‍👩‍💼'], "campus": ['Kantemirovskaya 🏭', 'Griboedova 🏨', 'Promyshlennaya 🏫', 'Sedova 🏠'],
+           "program": ['Logistics 🚚', 'InterBusiness 💼', 'Economics 📈', 'InterBac 🤹‍', 'PMI 💻', 'Data Analytics 📊', 'Physics 🌌', 'Law ⚖️',
+                       'History 📜', 'Mediacommunications 📱', 'Philology 📚', 'Politology 🏛️', 'Vostokovedenie ⛩️', 'Design 🎨', 'UAGS 🏢', 'Sociology 👥'],
+           "course": [1, 2, 3, 4],
+           "goals": ['Dates 👫', 'Networking 🤝', 'Friendship 🤙']}
+
+answers_val = ['/start', 'I am a Guy ‍👨‍💼', 'I am a Lady 👩‍💼', 'Kantemirovskaya 🏭', 'Griboedova 🏨', 'Promyshlennaya 🏫', 'Sedova 🏠', 'Logistics 🚚',
+               'InterBusiness 💼', 'Economics 📈', 'InterBac 🤹‍', 'PMI 💻', 'Data Analytics 📊', 'Physics 🌌', 'Law ⚖️',
+               'History 📜', 'Mediacommunications 📱', 'Philology 📚', 'Politology 🏛️', 'Vostokovedenie ⛩️', 'Design 🎨', 'UAGS 🏢', 'Sociology 👥',
+               '1', '2', '3', '4', 'Dates 👫', 'Networking 🤝', 'Friendship 🤙']
