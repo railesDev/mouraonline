@@ -27,7 +27,8 @@ reactivate_profile = '🔮Return to Moura!🔮'
 reactivate_profile_placeholder = "Return?"
 
 
-intro_photo = 'https://cutt.ly/LwYgpImT'
+intro_photo = 'https://cutt.ly/jwOeCQYf'
+# 'https://cutt.ly/LwYgpImT'
 intro_caption = ("<b>Hey!👋 Announcements channel: @mourahse</b>\n\nWe care about HSE students' security and privacy, so bot is inactive until you enter the access code:\n"
                  "<i>*hint: you can find it in the posters and ads</i>")
 
