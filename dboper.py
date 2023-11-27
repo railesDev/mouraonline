@@ -60,7 +60,7 @@ def find_match(conn, c, user_data):
     JOIN reactions ON users.id = reactions.id
     WHERE reactions.reaction != 0 
     AND (
-    (users.gender_goals = %s OR users.gender_goals = 2) AND (users.gender = %s OR %s = 2) AND (users.frd_goal*%s = 1 OR users.dts_goal*%s = 1 OR users.ntw_goal*%s = 1)
+    (users.gender_goals = %s OR users.gender_goals = 2) AND (users.gender = %s OR %s = 2) AND (users.frd_goal = %s OR users.dts_goal = %s OR users.ntw_goal = %s)
     )
     AND users.id NOT IN (SELECT reactions.match_id FROM reactions WHERE reactions.id = users.id) 
     LIMIT 10
