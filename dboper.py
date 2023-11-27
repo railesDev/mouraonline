@@ -57,9 +57,8 @@ def find_match(conn, c, user_data):
     c.execute('''
     SELECT users.id
     FROM users
-    JOIN reactions ON users.id = reactions.id
-    WHERE reactions.reaction != 0 
-    AND (
+    LEFT JOIN reactions ON users.id = reactions.id AND reactions.reaction != 0 
+    WHERE (
     (users.gender_goals = %s OR users.gender_goals = 2) AND (users.gender = %s OR %s = 2) AND (users.frd_goal = %s OR users.dts_goal = %s OR users.ntw_goal = %s)
     )
     AND users.id NOT IN (SELECT reactions.match_id FROM reactions WHERE reactions.id = users.id) 
