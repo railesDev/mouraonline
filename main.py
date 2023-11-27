@@ -17,7 +17,7 @@ conn = psycopg2.connect(
     dbname="users",
     user="postgres",
     password="passmr",
-    host="localhost",
+    host="158.160.133.79",
     port = 5432
 )
 c = conn.cursor()
