@@ -1,0 +1,16 @@
+import handlers.start
+import handlers.deactivate_profile
+import handlers.parse_ad
+import handlers.access
+import handlers.ad_action
+import handlers.campus
+import handlers.course
+import handlers.finish_reg
+import handlers.gender
+import handlers.gender_goals
+import handlers.get_ad
+import handlers.goals
+import handlers.look_at_likes
+import handlers.photo_id
+import handlers.program
+import handlers.publish_ad
