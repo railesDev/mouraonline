@@ -12,9 +12,12 @@ async def start(message: types.Message, state: FSMContext) -> None:
     # check if the user cleared history and tried to launch the /start again:
     result = dboper.user_exists(c, message.from_user.id)
     if result is not None:
-        await message.answer(consts.start_caption)
         dboper.erase_user(conn, c, message.from_user.id)
-        await start(message, state)
+        await message.answer(consts.start_caption)
+        await message.answer_photo(consts.gender_photo,
+                                   consts.gender_caption,
+                                   reply_markup=keyboards.keyboard_gender)
+        await state.set_state(User.gender)  # setting state that we wait for gender
     else:
         # ask for access code
         await message.answer_photo(consts.intro_photo,
