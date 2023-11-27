@@ -28,8 +28,8 @@ reactivate_profile_placeholder = "Return?"
 
 
 intro_photo = 'https://cutt.ly/LwYgpImT'
-intro_caption = ('<b>Hey!👋 Announcements channel: @mourahse</b>\n\nBot is inactive until you enter the access code:\n'
-                 '<i>*hint: you can find it in the posters and ads</i>')
+intro_caption = ("<b>Hey!👋 Announcements channel: @mourahse</b>\n\nWe care about HSE students' security and privacy, so bot is inactive until you enter the access code:\n"
+                 "<i>*hint: you can find it in the posters and ads</i>")
 
 restart_caption = "Okay, let's restart filling your profile!🔮"
 start_caption = ("🧞Our digital minds say that you have been in Moura recently.\n"
