@@ -15,8 +15,8 @@ logging.basicConfig(level=logging.INFO)
 # conn = sqlite3.connect('users.db')
 conn = psycopg2.connect(
     dbname="users",
-    user="railes",
-    password="solviturambulando",
+    user="postgres",
+    password="passmr",
     host="localhost",
     port = 5432
 )
