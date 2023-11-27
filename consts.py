@@ -25,7 +25,7 @@ deactivate_sure_caption = ("Sorry to seeing you go😞\nYour ad and data have be
 
 reactivate_profile = '🔮Return to Moura!🔮'
 reactivate_profile_placeholder = "Return?"
-reactivate_caption = 'Happy to see you going back to Moura!🔮 Let's start from scratch!🔄'
+reactivate_caption = 'Let's start from scratch!🔄'
 
 
 intro_photo = 'https://cutt.ly/jwOeCQYf'
@@ -34,7 +34,7 @@ intro_caption = ("<b>Hey!👋 Announcements channel: @mourahse</b>\n\nWe care ab
                  "<i>*hint: you can find it in the posters and ads</i>")
 
 restart_caption = "Okay, let's restart filling your profile!🔮"
-start_caption = ("🧞Our digital minds say that you have been in Moura recently.\n"
+start_caption = ("🧞Our digital minds say that you have been in Moura recently.\nHappy to see you going back!\n"
                  "We deleted your data from us and you shall start over!🔮")
 
 
