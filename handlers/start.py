@@ -18,6 +18,7 @@ async def start(message: types.Message, state: FSMContext) -> None:
         await message.answer_photo(consts.gender_photo,
                                    consts.gender_caption,
                                    reply_markup=keyboards.keyboard_gender)
+        await state.update_data(id=message.from_user.id)
         await state.set_state(User.gender)  # setting state that we wait for gender
     else:
         # ask for access code
