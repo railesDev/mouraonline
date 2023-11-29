@@ -6,7 +6,7 @@ def parse_ad(data):
     photoid = ""
     logging.info("DATA to parse ad: "+str(data))
     for key, value in data.items():
-        if key not in ["id", "ad_text", "goals", "photo_id", "gender_goals"]:
+        if key not in ["id", "ad_text", "goals", "photo_id", "gender_goals", "awaiting", "action", "matched"]:
             sdata += "<b>"+key[0].upper()+key[1:]+":</b> "+(value if key != "gender" else "male" if value == 1 else "female")+"\n"
         else:
             if key == "ad_text":
