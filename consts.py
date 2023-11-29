@@ -30,7 +30,7 @@ reactivate_caption = "Let's start from scratch!🔄"
 
 intro_photo = 'https://cutt.ly/jwOeCQYf'
 # 'https://cutt.ly/LwYgpImT'
-intro_caption = ("<b>Hey!👋 Announcements channel: @mourahse</b>\n\nWe care about HSE students' security and privacy, so bot is inactive until you enter the access code:\n"
+intro_caption = ("<b>Hey!👋 Announcements channel: @mourahse</b>\nDon't forget to subscribe to stay up-to-date!\n\nWe care about HSE students' security and privacy, so Moura is inactive until you enter the access code:\n"
                  "<i>*hint: you can find it in the posters and ads</i>")
 
 restart_caption = "Okay, let's restart filling your profile!🔮"
