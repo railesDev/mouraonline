@@ -23,7 +23,7 @@ async def get_new_ad(message: types.Message, state: FSMContext):
     logging.info("USER DATA: " + str(user_data) + "\n\n\n")
     while True:
         data = await state.get_data()
-        if not data:
+        if not data or data["awaiting"] == -1:
             break
         # try to find a match for him if any left
         match_id = dboper.find_match(conn, c, user_data)
