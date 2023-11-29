@@ -54,7 +54,8 @@ def extract_user(conn, c, id_):
 
 
 def find_match(conn, c, user_data):
-    c.execute('''
+    '''
+    c.execute(
     SELECT users.id
     FROM users
     LEFT JOIN reactions ON (users.id = reactions.id AND users.id != %s AND (reactions.reaction != 0 AND reactions.reaction != 1 AND reactions.reaction != 2))
@@ -63,7 +64,23 @@ def find_match(conn, c, user_data):
     )
     AND users.id NOT IN (SELECT reactions.match_id FROM reactions WHERE reactions.id = users.id) 
     LIMIT 10
-    ''', (user_data[0], user_data[1], user_data[2], user_data[2], user_data[3], user_data[4], user_data[5],))
+    , (user_data[0], user_data[1], user_data[2], user_data[2], user_data[3], user_data[4], user_data[5],))
+    '''
+    c.execute('''
+    SELECT users.id
+    FROM users
+    WHERE (
+    users.id != %s
+    AND
+    (users.gender_goals = %s OR users.gender_goals = 2) AND (users.gender = %s OR %s = 2) AND (users.frd_goal = %s OR users.dts_goal = %s OR users.ntw_goal = %s)
+    )
+    AND NOT EXISTS (
+    SELECT 1
+    FROM reactions
+    WHERE reactions.match_id = users.id AND reactions.id = %s
+    )
+    AND users.id NOT IN (SELECT reactions.match_id FROM reactions WHERE reactions.id = users.id) 
+    LIMIT 10''', (user_data[0], user_data[1], user_data[2], user_data[2], user_data[3], user_data[4], user_data[5], user_data[0],))
     res = c.fetchall()
     return random.choice(res) if res else None
 
