@@ -92,7 +92,8 @@ def course_caption(message):
 
 
 goals = ['Dates 👫', 'Networking 🤝', 'Friendship 🤙']
-goals_photo = 'https://cutt.ly/HwYox0Yv'
+goals_photo = 'https://cutt.ly/SwOn6OND'
+# 'https://cutt.ly/HwYox0Yv'
 basic_done_caption = "So, we are done with your basic information!\n<b>Let's go for a next step!😎</b>"
 goals_caption = ("<b>STEP 5/8📝</b>\nWhat are your boundaries and goals?\n\nAre you into dates, "
                  "networking (co-projects) or just friendship?")
