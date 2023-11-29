@@ -25,7 +25,7 @@ deactivate_sure_caption = ("Sorry to seeing you go😞\nYour ad and data have be
 
 reactivate_profile = '🔮Return to Moura!🔮'
 reactivate_profile_placeholder = "Return?"
-reactivate_caption = 'Let's start from scratch!🔄'
+reactivate_caption = "Let's start from scratch!🔄"
 
 
 intro_photo = 'https://cutt.ly/jwOeCQYf'
