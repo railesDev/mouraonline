@@ -57,7 +57,7 @@ def find_match(conn, c, user_data):
     c.execute('''
     SELECT users.id
     FROM users
-    LEFT JOIN reactions ON users.id = reactions.id AND reactions.reaction != 0 AND users.id != %s
+    LEFT JOIN reactions ON users.id = reactions.id AND reactions.reaction != 0 AND reactions.reaction != 1 AND reactions.reaction != 2 AND users.id != %s
     WHERE (
     (users.gender_goals = %s OR users.gender_goals = 2) AND (users.gender = %s OR %s = 2) AND (users.frd_goal = %s OR users.dts_goal = %s OR users.ntw_goal = %s)
     )
@@ -95,7 +95,7 @@ def update_reaction(conn, c, id_, reaction):
     WHERE reaction != 2 AND id = %s
     ''', (reaction, id_))
     c.execute(f'''
-    UPDATE matches
+    UPDATE reactions
     SET reaction = %s
     WHERE reaction != 2 AND match_id = %s
     ''', (reaction, id_))
