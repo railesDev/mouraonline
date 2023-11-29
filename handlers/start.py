@@ -4,6 +4,7 @@ from states import User
 import dboper
 import consts
 import logging
+import keyboards
 
 
 @router.message((F.text == '/start') | (F.text == consts.reactivate_profile))
