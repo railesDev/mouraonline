@@ -5,21 +5,27 @@ import dboper
 import consts
 import logging
 import keyboards
+from handlers.settings import setup
 
 
 @router.message((F.text == '/start') | (F.text == consts.reactivate_profile))
 async def start(message: types.Message, state: FSMContext) -> None:
     await state.clear()
     # check if the user cleared history and tried to launch the /start again:
-    result = dboper.user_exists(c, message.from_user.id)
+    result, code = dboper.user_exists(c, message.from_user.id)
     if result is not None:
-        dboper.erase_user(conn, c, message.from_user.id)
         await message.answer(consts.start_caption)
-        await message.answer_photo(consts.gender_photo,
+        if code == 2:
+            # dboper.erase_user(conn, c, message.from_user.id)
+            await message.answer(consts.return_start_caption)
+            await message.answer_photo(consts.gender_photo,
                                    consts.gender_caption,
                                    reply_markup=keyboards.keyboard_gender)
-        await state.update_data(id=message.from_user.id)
-        await state.set_state(User.gender)  # setting state that we wait for gender
+            await state.update_data(id=message.from_user.id)
+            await state.set_state(User.gender)  # setting state that we wait for gender
+        else:
+            await setup(message, state) # taking user to setup
+
     else:
         # ask for access code
         await message.answer_photo(consts.intro_photo,
