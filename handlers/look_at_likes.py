@@ -24,6 +24,7 @@ async def look_at_like(message: types.Message, state: FSMContext):
         await message.answer_photo(str(match_data[9]), unpack_ad(match_data), reply_markup=keyboards.likes_keyboard)
     else:  # no likes left
         await state.set_state(User.awaiting)
+        await state.update_data(awaiting=-1)
         await message.answer(consts.no_likes_caption,
                              reply_markup=keyboards.awaiting_keyboard)
 
@@ -32,7 +33,7 @@ async def look_at_like(message: types.Message, state: FSMContext):
             await asyncio.sleep(86400)
             try:
                 data = await state.get_data()
-                if data['awaiting']:
+                if data['awaiting'] != -1:
                     pass
             except KeyError:
                 await message.answer(random.choice(consts.inactivity_caption))
