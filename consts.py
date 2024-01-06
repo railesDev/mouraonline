@@ -13,7 +13,7 @@ publish_ad = 'Опубликовать 🏹!'
 publish_placeholder = 'Погнали?'
 
 no_photo = 'Без фото ❌'
-show_ad = '🔮Покажи анкету!🔮'
+show_ad = '🔮Покажи новую анкету!🔮'
 save_goals = 'Сохранить💾'
 deactivate_profile = 'Деактивировать Муру 😴'
 deactivate_sure = 'Да, точно ☠️'
