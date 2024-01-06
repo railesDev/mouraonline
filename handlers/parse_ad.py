@@ -6,6 +6,7 @@ def parse_ad(data):
     sdata = ""
     photoid = ""
     logging.info("DATA to parse ad: "+str(data))
+    goals = []
     for key, value in data.items():
         if key not in ["frd_goal", "dts_goal", "ntw_goal", "id", "ad_text", "goals", "photo_id", "gender_goals", "awaiting", "action", "matched"]:
             sdata += database[key]+(value if key != "gender" else "мужской" if value == 1 else "женский")+"\n"
@@ -15,11 +16,16 @@ def parse_ad(data):
             if key == "goals":
                 sdata += "<b>"+database[key]+":</b> "+', '.join(value)+"\n"
             if key == "frd_goal":
-                sdata += "<b>Цели:</b> " + (consts.goals[2] if bool(value) else '')
+                sdata += "<b>Цели:</b> "
+                if bool(value):
+                    goals.append(consts.goals[2])
             if key == "dts_goal":
-                sdata += (consts.goals[0] if bool(value) else '')
+                if bool(value):
+                    goals.append(consts.goals[0])
             if key == "ntw_goal":
-                sdata += (consts.goals[1] if bool(value) else '')
+                if bool(value):
+                    goals.append(consts.goals[1])
+                sdata += ', '.join(value)+"\n"
             if key == "gender_goals":
                 sdata += "<b>Предпочтения:</b> " + ('Девушки ‍👩' if value == 0
                                                                     else ('Без разницы 🤷' if value == 2
