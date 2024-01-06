@@ -15,7 +15,7 @@ async def start(message: types.Message, state: FSMContext) -> None:
     result, code = dboper.user_exists(c, message.from_user.id)
     if result is not None:
         await message.answer(consts.start_caption)
-        if code == 2:
+        if code:
             # dboper.erase_user(conn, c, message.from_user.id)
             await message.answer(consts.return_start_caption)
             await message.answer_photo(consts.gender_photo,
