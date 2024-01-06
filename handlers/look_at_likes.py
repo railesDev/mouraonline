@@ -12,9 +12,6 @@ import random
 
 match = False
 
-async def getmatch():
-    return match
-
 @dp.message(F.text == consts.likes)
 async def look_at_like(message: types.Message, state: FSMContext):
     res = dboper.find_like(conn, c, message.from_user.id)
@@ -58,14 +55,16 @@ async def match(message: types.Message, state: FSMContext):
     #  There you will be able to showcase your own username -> prebuilt scripts (share your username, set location, etc)
 
 
-@dp.message((F.text.len() > 0) & match())
+@dp.message(F.text.len() > 0)
 async def send_letter(message: types.Message, state: FSMContext):
+    global match
+    if not match:
+        pass
     data = await state.get_data()
     await moura.send_message(chat_id=data["awaiting"],
                              text=consts.matched+'\n\n'+message.text,
                              reply_markup=ReplyKeyboardRemove())
     await message.answer(consts.letter_sent_caption)
-    global match
     match = False
     await look_at_like(message, state)  # view next like
     # to the one with whom we matched, will happen nothing. everything is on our initiative.
