@@ -14,7 +14,7 @@ import asyncio
 )
 async def perform_action(message: types.Message, state: FSMContext):
     data = await state.get_data()
-    if message.text == consts.actions[0]:
+    if message.text == consts.actions[2]:
         dboper.react(conn, c, message.from_user.id, data["awaiting"], 1)
         await moura.send_message(chat_id=data["awaiting"],
                                  text=consts.got_like_caption,
@@ -50,7 +50,7 @@ async def perform_action(message: types.Message, state: FSMContext):
             except KeyError:
                 await message.answer(random.choice(consts.inactivity_caption))
 
-    elif message.text == consts.actions[2]:
+    elif message.text == consts.actions[0]:
         dboper.react(conn, c, message.from_user.id, data["awaiting"], 0)
         await message.answer(consts.complain_caption,
                              reply_markup=keyboards.awaiting_keyboard)
