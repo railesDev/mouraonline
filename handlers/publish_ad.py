@@ -27,8 +27,8 @@ def goals_encoder(goals_data, decode=False):
 async def register_finishing(message: types.Message, state: FSMContext):
     data = await state.get_data()
     sdata = list(data.values())
-    sdata[4] = goals_encoder(sdata[4])
-    sdata = message.from_user.id + sdata[:4] + [sdata[4][0], sdata[4][1], sdata[4][2]] + sdata[5:]
+    sdata[5] = goals_encoder(sdata[5])
+    sdata = sdata[:5] + [sdata[5][0], sdata[5][1], sdata[5][2]] + sdata[6:]
     logging.info("FINAL DATA: "+str(sdata))
     await message.answer(
         text=consts.published_ad_caption,
@@ -38,12 +38,12 @@ async def register_finishing(message: types.Message, state: FSMContext):
     dboper.save_user(conn, c, sdata)
     await state.set_state(User.awaiting)
 
-    # SPECIAL LINES TO CHECK INACTIVITY EACH 10 MINUTES
+    # SPECIAL LINES TO CHECK INACTIVITY EACH 24 HOURS
     while True:
-        await asyncio.sleep(600)
+        await asyncio.sleep(86400)
         try:
             data = await state.get_data()
-            if data['awaiting']:
+            if data['awaiting'] != -1:
                 pass
         except KeyError:
             await message.answer(random.choice(consts.inactivity_caption))
