@@ -28,7 +28,7 @@ async def register_finishing(message: types.Message, state: FSMContext):
     data = await state.get_data()
     sdata = list(data.values())
     sdata[4] = goals_encoder(sdata[4])
-    sdata = sdata[:4] + [sdata[4][0], sdata[4][1], sdata[4][2]] + sdata[5:]
+    sdata = message.from_user.id + sdata[:4] + [sdata[4][0], sdata[4][1], sdata[4][2]] + sdata[5:]
     logging.info("FINAL DATA: "+str(sdata))
     await message.answer(
         text=consts.published_ad_caption,
