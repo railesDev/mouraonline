@@ -24,9 +24,9 @@ async def get_new_ad(message: types.Message, state: FSMContext):
     while True:
         data = await state.get_data()
         if not data:
-            break
+            return
         if data["awaiting"] == -1:
-            break
+            return
         # try to find a match for him if any left
         match_id = dboper.find_match(conn, c, user_data)
         logging.info("tried to find a recommendation.")
