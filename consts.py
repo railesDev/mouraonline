@@ -1,63 +1,63 @@
 female_anon_photo_id = 'AgACAgIAAxkBAAIGJmVNcnV831dIx07HTQQayc5tk8bnAAI01DEb0oFxSvQ-2w8nblOoAQADAgADeQADMwQ'
 male_anon_photo_id = 'AgACAgIAAxkBAAIQxGVQA6sCMjjYnNgsUaCdusBZB4xyAAITzjEb7JSASjy2e7xU6PkMAQADAgADeQADMwQ'
 
-inactivity_caption = ["Are you there? Many people in Moura are awaiting for you!",
-                      "Let's get back to the world of Moura!",
-                      "Do you still want to match with someone?",
-                      "I am ready to show you many people from your university! "
-                      "If you don't want to respond, just deactivate the profile"]
+inactivity_caption = ["Хэй, ты тут? Множество людей в Муре ждут тебя!",
+                      "Вернемся в мир Муры?",
+                      "Еще хочешь с кем-то мэтчиться?",
+                      "Хочешь увидеть новых людей из вышки? "
+                      "Если не хочешь больше мэтчиться, заморозь профиль!"]
 
-start_over = 'Start over 🔄'
+start_over = 'Заново 🔄'
 
-publish_ad = 'Publish 🏹!'
-publish_placeholder = 'Ready to go?'
+publish_ad = 'Опубликовать 🏹!'
+publish_placeholder = 'Погнали?'
 
-no_photo = 'No photo ❌'
-show_ad = '🔮Show me an ad!🔮'
-save_goals = 'Save💾'
-deactivate_profile = 'Deactivate Moura 😴'
-deactivate_sure = 'Yes, I am sure ☠️'
-deactivate_no = 'No, it is a mistake!'
-deactivate_profile_caption = "Are you sure you want to leave us?"
-deactivate_profile_placeholder = "Maybe no?)"
-deactivate_sure_caption = ("Sorry to seeing you go😞\nYour ad and data have been deleted from us!\n"
-                              "But you can always get back by typing /start or clicking on a button👇!")
+no_photo = 'Без фото ❌'
+show_ad = '🔮Покажи анкету!🔮'
+save_goals = 'Сохранить💾'
+deactivate_profile = 'Деактивировать Муру 😴'
+deactivate_sure = 'Да, точно ☠️'
+deactivate_no = 'Не, я случайно!'
+deactivate_profile_caption = "Точно хочешь нас покинуть?"
+deactivate_profile_placeholder = "Может, нет?)"
+deactivate_sure_caption = ("Грустно, что ты нас покидаешь😞\nТвоя анкета и данные были удалены с наших серверов!\n"
+                              "Но ты всегда можешь вернуться, нажав /start или на кнопку ниже👇!")
 
-reactivate_profile = '🔮Return to Moura!🔮'
-reactivate_profile_placeholder = "Return?"
-reactivate_caption = "Let's start from scratch!🔄"
+reactivate_profile = '🔮Вернуться в Муру!🔮'
+reactivate_profile_placeholder = "Возвращаемся?"
+reactivate_caption = "Давай начнем с чистого листа!🔄"
 
 
 intro_photo = 'https://cutt.ly/jwOeCQYf'
 # 'https://cutt.ly/LwYgpImT'
-intro_caption = ("<b>Hey!👋 Announcements channel: @mourahse</b>\nDon't forget to subscribe to stay up-to-date!\n\nWe care about HSE students' security and privacy, so Moura is inactive until you enter the access code:\n"
-                 "<i>*hint: you can find it in the posters and ads</i>")
+intro_caption = ("<b>Привет!👋 Канал для анонсов: @mourahse</b>\nНе забудь подписаться, чтобы ничего не пропустить!\n\nМы заботимся о безопасности и приватности студентов вышки, поэтому Мура не будет работать, пока ты не введешь код доступа:\n"
+                 "<i>*подсказка: ты можешь найти его на постерах</i>")
 
-restart_caption = "Okay, let's restart filling your profile!🔮"
-start_caption = ("🧞Our digital minds say that you have been in Moura recently.\nHappy to see you going back!\n"
-                 "We deleted your data from us and you shall start over!🔮")
+restart_caption = "Окей, давай заполним твой профиль заново!🔮"
+start_caption = ("🧞Наша коллегия цифровых старейшин говорит, что у тебя уже был профиль в Муре.\nРады, что ты возвращаешься!\n"
+                 "Мы удалили твои данные, так что время начать с чистого листа!🔮")
 
 
 access_code = "HSEMR"
 
 
 gender_photo = 'https://cutt.ly/cwTbybUB'
-gender_caption = 'Welcome to the world of Moura!🫰\n\n<b>STEP 1/8📝</b>\nTell us about yourself:'
-gender_options = ['I am a Guy ‍👨‍💼', 'I am a Lady ‍👩‍💼']
-gender_placeholder = 'Your gender?'
+gender_caption = 'Добро пожаловать в мир Муры!🫰\n\n<b>ШАГ 1/8📝</b>\nРасскажи о себе:'
+gender_options = ['Я парень ‍👨‍💼', 'Я девушка ‍👩‍💼']
+gender_placeholder = 'Твой пол?'
 
 
 campus_photo = 'https://cutt.ly/3wYopqmz'
-campus_alias = lambda gender: 'bro' if gender == 'I am a Guy ‍👨‍💼' else 'lady'
-campus_placeholder = 'Choose a campus'
+campus_alias = lambda gender: 'бро' if gender == 'Я парень ‍👨‍💼' else 'леди'
+campus_placeholder = 'Выбери свой корпус'
 
 
 def campus_caption(gender):
-    return (f'Okay, {campus_alias(gender)}!\n\n<b>STEP 2/8📝</b>\nThen we determine your HSE campus. '
-            f'Choose one of yours below:👇')
+    return (f'Окей, {campus_alias(gender)}!\n\n<b>ШАГ 2/8📝</b>\nТеперь давай определим корпус, в который ты обычно ходишь на пары.'
+            f'Выбери свой ниже:👇')
 
 
-campus_options = ['Kantemirovskaya 🏭', 'Griboedova 🏨', 'Promyshlennaya 🏫', 'Sedova 🏠']
+campus_options = ['Кантемировская 🏭', 'Грибоедова 🏨', 'Промышленная 🏫', 'Седова 🏠']
 kanta_photo = 'https://cutt.ly/awYogHta'
 griba_photo = 'https://cutt.ly/MwYogMg4'
 proma_photo = 'https://cutt.ly/CwYog9ZH'
@@ -65,87 +65,89 @@ sedova_photo = 'https://cutt.ly/0wYog5yQ'
 
 
 def campus_reaction_photo(campus):
-    return kanta_photo if campus == 'Kantemirovskaya 🏭'\
-        else (griba_photo if campus == 'Griboedova 🏨'
-              else (proma_photo if campus == 'Promyshlennaya 🏫'
-                    else (sedova_photo if campus == 'Sedova 🏠'
+    return kanta_photo if campus == 'Кантемировская 🏭'\
+        else (griba_photo if campus == 'Грибоедова 🏨'
+              else (proma_photo if campus == 'Промышленная 🏫'
+                    else (sedova_photo if campus == 'Седова 🏠'
                           else None)))
 
 
-campus_reaction_caption = 'Each building of HSE is unique🫶\nWe in Moura admire all the campuses and their students!'
+campus_reaction_caption = 'Согласись, каждое здание вышки обладает своим уникальным и потрясающим вайбом?🫶'
 
-program_options = ['Logistics 🚚', 'InterBusiness 💼', 'Economics 📈', 'InterBac 🤹‍', 'PMI 💻', 'Data Analytics 📊',
-                   'Physics 🌌', 'Law ⚖️', 'History 📜', 'Mediacommunications 📱', 'Philology 📚', 'Politology 🏛️',
-                   'Vostokovedenie ⛩️', 'Design 🎨', 'UAGS 🏢']
+program_options = ['Логистика 🚚', 'МежБиз 💼', 'Экономика 📈', 'МежБак 🤹‍', 'ПМИ 💻', 'Анализ данных 📊',
+                   'Физика 🌌', 'Право ⚖️', 'История 📜', 'Медиаком 📱', 'Филология 📚', 'Политология 🏛️',
+                   'Востоковедение ⛩️', 'Дизайн 🎨', 'УАГС 🏢']
 program_photo = 'https://cutt.ly/owYoxOJt'
-program_caption = '<b>STEP 3/8📝</b>\nWhich program do you study at?👀'
-program_placeholder = 'Choose a program'
+program_caption = '<b>ШАГ 3/8📝</b>\nНа какой программе учишься?👀'
+program_placeholder = 'Выбери ОП'
 
 course_options = ['1 👶', '2 🧒', '3 🧔', '4 👴', '5 😎']
 course_photo = 'https://cutt.ly/bwYoxLwG'
-course_placeholder = 'Choose course #'
+course_placeholder = 'Выбери номер своего курса'
 
 
 def course_caption(message):
-    return (f'So, you study <b>{message if message != "Sedova 🏠" else "Sociology 👥, so skipping the 3rd step"}!</b>\n'
-            f'\n<b>STEP 4/8📝</b>\nWhat is your course?')
+    return (f'Что ж, ты учишься на программе <b>{message if message != "Седова 🏠" else "Социология 👥, так что пропускаем шаг номер 3!"}!</b>\n'
+            f'\n<b>ШАГ 4/8📝</b>\nНа каком курсе учишься?')
 
 
-goals = ['Dates 👫', 'Networking 🤝', 'Friendship 🤙']
+goals = ['Допускаю дейты 👫', 'Нетворкинг 🤝', 'Дружба 🤙']
 goals_photo = 'https://cutt.ly/SwOn6OND'
 # 'https://cutt.ly/HwYox0Yv'
-basic_done_caption = "So, we are done with your basic information!\n<b>Let's go for a next step!😎</b>"
-goals_caption = ("<b>STEP 5/8📝</b>\nWhat are your boundaries and goals?\n\nAre you into dates, "
-                 "networking (co-projects) or just friendship?")
-no_goals_caption = ("<b>Choose any goal first!</b>\n\n<b>STEP 5/8📝</b>\nWhat are your boundaries and goals?\n"
-                    "Your choice will affect which people you will see")
+basic_done_caption = "Покончили с базовой информацией, теперь перейдем к следующему шагу!😎</b>"
+goals_caption = ("<b>ШАГ 5/8📝</b>\nКакие у тебя рамки и цели?\n\nТы допускаешь дейты, "
+                 "ищешь возможности для нетворкинга или просто дружбу?")
+no_goals_caption = ("<b>Сначала выбери хотя бы одну из целей!</b>\n\n<b>ШАГ 5/8📝</b>\nКакие у тебя рамки и цели?\n"
+                    "Твой выбор повлияет на то, каких людей ты увидишь!")
 
 
 def goals_chosen_caption(chosen_goals):
-    return ("<b>STEP 5/8📝</b>\nYour chosen goals:\n<b>" + ', '.join(chosen_goals) +
-            "</b>\n\nThey will affect which people you will see\n<b>Don't forget to click Save💾!</b>\n\n" +
-            "<i>*to cancel selection, click on a button again</i>")
+    return ("<b>ШАГ 5/8📝</b>\nТвои выбранные цели:\n<b>" + ', '.join(chosen_goals) +
+            "</b>\n\nТвой выбор повлияет на то, каких людей ты увидишь!\n<b>Не забудь нажать на кнопку Сохранить💾!</b>\n\n" +
+            "<i>*чтобы отменить выбор цели, нажми на нее еще раз)</i>")
 
 
 def goals_saved_caption(chosen_goals):
-    return ("<b>STEP 5/8📝</b>\nYour goals have been saved!\n\n<b>" +
-            ', '.join(chosen_goals) + "</b>\n\nThis will help Moura to find more suitable people for you!")
+    return ("<b>ШАГ 5/8📝</b>\nТвои предпочтения сохранены!\n\n<b>" +
+            ', '.join(chosen_goals) + "</b>\n\nЭто поможет Муре найти более подходящих тебе людей!")
 
 
 gender_goals_photo = 'https://cutt.ly/NwYocqmG'
-gender_goals_caption = "<b>STEP 6/8📝</b>\nWhat about your gender preferences? Who should Moura show you?"
-gender_goals_options = ['Ladies ‍👩', 'Guys 👨', 'Both 🤷']
-gender_goals_placeholder = 'Choose preferences'
+gender_goals_caption = "<b>ШАГ 6/8📝</b>\nЧто по поводу твоих предпочтений? Кого Муре стоит тебе показывать?"
+gender_goals_options = ['Девушки ‍👩', 'Парни 👨', 'Без разницы 🤷']
+gender_goals_placeholder = 'Выбери предпочтения'
 
 photo_id_photo = 'https://cutt.ly/BwYocaLZ'
-photo_id_caption = ("<b>STEP 7/8📝</b>\nNow, if you wish, you can attach a photo to your ad! "
-                    "It will increase your chance to match!\nOr... refuse and stay anonymous🦹!")
-photo_id_placeholder = 'Upload photo/refuse'
+photo_id_caption = ("<b>ШАГ 7/8📝</b>\nТеперь, если хочешь, можешь прикрепить фото к анкете! "
+                    "Этот шаг увеличит твои шансы на мэтч!\nИли... откажись и оставайся в тени🦹!")
+photo_id_placeholder = 'Пришли фото/откажись'
 
 ad_text_photo = 'https://cutt.ly/LwYoclfw'
-ad_text_caption = ('As we are done with photos,...\n\n<b>STEP 8/8📝</b>\nFinally, create a description!\n'
-                   'This is the most important part in your ad.\n\n<b>Describe your desires or offer something</b>')
-ad_text_placeholder = 'See it as your Twitter'
+ad_text_caption = ('Вот мы и разобрались с фото,...\n\n<b>ШАГ 8/8📝</b>\nПоследнее действие - напиши описание!\n'
+                   'Эта часть - самая важная.\n\n<b>Опиши, чего хочешь, расскажи о себе, предложи что-то</b>')
+ad_text_placeholder = 'Это твой твиттер'
 
 
 def finish_caption(ad):
-    return f"<b>✅ WE ARE ALL DONE! Look at your ad:</b>\n\n{ad}\nIs everything correct? <b>If yes, click Publish!</b>"
+    return f"<b>✅ МЫ СПРАВИЛИСЬ! Взгляни на свою анкету:</b>\n\n{ad}\nВсе верно? <b>Если да, кликай на Опубликовать!</b>"
 
 
-published_ad_caption = f"<b>Your ad is published!🤩</b>\nNow let's start matching!"
+published_ad_caption = f"<b>Твоя анкета опубликована!🤩</b>\nДавай посмотрим на обитателей мира Муры!"
 
-no_ads_caption = "For now no more ads:(\nWait for it, I will send you a new one as soon as it appears!"
+no_ads_caption = "Пока что не нашлось подходящих анкет:(\nПодожди немного, я сам отправлю тебе анкету, как только она появится!"
 
-got_like_caption = "You have a new like!"
-got_like = 'Look at my likes!💟'
-got_like_placeholder = 'Wanna look?'
+got_like_caption = "У тебя новый лайк!"
+got_like = 'Взглянуть на мои лайки!💟'
+got_like_placeholder = 'Хочешь посмотреть?'
 
-actions = ['Like 💟', 'Next ⏩️', 'Complain ‼️']
-actions_placeholder = 'What do you think?'
+actions = ['Лайк 💟', 'Дальше ⏩️', 'Жалоба ‼️']
+actions_placeholder = 'Что думаешь?'
 
-like_actions = ['Match 💟', 'No 🚫', 'Complain ‼️']
-no_likes_caption = "No more likes, wish to continue?"
-like_caption = "Like was sent!"
-dislike_caption = "Okay, next one!"
+like_actions = ['Мэтч! 💟', 'Нет 🚫', 'Жалоба ‼️']
+no_likes_caption = "Больше лайков нет, продолжим?"
+like_caption = "Лайк отправлен!"
+dislike_caption = "Окей, погнали дальше!"
 
-complain_caption = "Please forward this ad to @heliumwer, he will deal with this person!"
+complain_caption = "Пожалуйста, перешли сообщение с анкетой Рэю - @vwonders, он разберется!"
+
+match_photo = 'https://cutt.ly/nwHnXGW0'
