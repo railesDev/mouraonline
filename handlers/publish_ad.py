@@ -27,6 +27,7 @@ def goals_encoder(goals_data, decode=False):
 async def register_finishing(message: types.Message, state: FSMContext):
     data = await state.get_data()
     sdata = list(data.values())
+    logging.info('CURRENT ERROR: '+sdata+"\n\n"+sdata[5])
     sdata[5] = goals_encoder(sdata[5])
     sdata = sdata[:5] + [sdata[5][0], sdata[5][1], sdata[5][2]] + sdata[6:]
     logging.info("FINAL DATA: "+str(sdata))
