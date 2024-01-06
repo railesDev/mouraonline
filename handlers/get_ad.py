@@ -13,7 +13,7 @@ from unpack_ad import unpack_ad
 
 @router.message(
     User.awaiting,
-    (F.text == consts.show_ad) | (F.text == consts.deactivate_no)
+    (F.text == consts.show_ad) | (F.text == consts.backto_ads)
 )
 async def get_new_ad(message: types.Message, state: FSMContext):
     await state.update_data(awaiting=0) # user decided to wait for a new ad
