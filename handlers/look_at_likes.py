@@ -27,9 +27,9 @@ async def look_at_like(message: types.Message, state: FSMContext):
         await message.answer(consts.no_likes_caption,
                              reply_markup=keyboards.awaiting_keyboard)
 
-        # SPECIAL LINES TO CHECK INACTIVITY EACH 10 MINUTES
+        # SPECIAL LINES TO CHECK INACTIVITY EACH 24 HOURS
         while True:
-            await asyncio.sleep(600)
+            await asyncio.sleep(86400)
             try:
                 data = await state.get_data()
                 if data['awaiting']:
