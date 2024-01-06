@@ -23,9 +23,9 @@ async def perform_action(message: types.Message, state: FSMContext):
                              reply_markup=keyboards.awaiting_keyboard)
         await state.set_state(User.awaiting)
 
-        # SPECIAL LINES TO CHECK INACTIVITY EACH 10 MINUTES
+        # SPECIAL LINES TO CHECK INACTIVITY EACH 24 HOURS
         while True:
-            await asyncio.sleep(600)
+            await asyncio.sleep(86400)
             try:
                 data = await state.get_data()
                 if data['awaiting']:
@@ -40,9 +40,9 @@ async def perform_action(message: types.Message, state: FSMContext):
         # TODO: 100% NEXT AD WILL BE SENT
         await state.set_state(User.awaiting)
 
-        # SPECIAL LINES TO CHECK INACTIVITY EACH 10 MINUTES
+        # SPECIAL LINES TO CHECK INACTIVITY EACH 24 HOURS
         while True:
-            await asyncio.sleep(600)
+            await asyncio.sleep(86400)
             try:
                 data = await state.get_data()
                 if data['awaiting']:
@@ -56,9 +56,9 @@ async def perform_action(message: types.Message, state: FSMContext):
                              reply_markup=keyboards.awaiting_keyboard)
         await state.set_state(User.awaiting)
 
-        # SPECIAL LINES TO CHECK INACTIVITY EACH 10 MINUTES
+        # SPECIAL LINES TO CHECK INACTIVITY EACH 24 HOURS
         while True:
-            await asyncio.sleep(600)
+            await asyncio.sleep(86400)
             try:
                 data = await state.get_data()
                 if data['awaiting']:
