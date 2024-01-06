@@ -10,7 +10,7 @@ import asyncio
 import random
 
 
-@dp.message(F.text == "Look at my likes!💟")
+@dp.message(F.text == consts.likes)
 async def look_at_like(message: types.Message, state: FSMContext):
     res = dboper.find_like(conn, c, message.from_user.id)
     if res is not None:  # we have likes left
@@ -35,7 +35,7 @@ async def look_at_like(message: types.Message, state: FSMContext):
 
 
 
-@dp.message(F.text == "Match 💟")
+@dp.message(F.text == consts.like_actions[2])
 async def match(message: types.Message, state: FSMContext):
     data = await state.get_data()
     dboper.update_reaction(conn, c, data["awaiting"], 2)
@@ -50,7 +50,7 @@ async def match(message: types.Message, state: FSMContext):
     # to the one with whom we matched, will happen nothing. everything is on our initiative.
 
 
-@dp.message(F.text == "No 🚫")
+@dp.message(F.text == consts.like_actions[1])
 async def no_match(message: types.Message, state: FSMContext):
     data = await state.get_data()
     dboper.update_reaction(conn, c, data["awaiting"], 0)
@@ -58,7 +58,7 @@ async def no_match(message: types.Message, state: FSMContext):
     await look_at_like(message, state)  # view next like
 
 
-@dp.message(F.text == 'Complain ‼️')
+@dp.message(F.text == consts.like_actions[0])
 async def match_complain(message: types.Message, state: FSMContext):
     data = await state.get_data()
     dboper.update_reaction(conn, c, data["awaiting"], 0)
