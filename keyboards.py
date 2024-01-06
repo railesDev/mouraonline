@@ -134,13 +134,27 @@ last_keyboard = types.ReplyKeyboardMarkup(keyboard=last_kb,
 
 awaiting_kb = [
         [types.KeyboardButton(text=consts.show_ad)],
-        [types.KeyboardButton(text=consts.deactivate_profile)],
+        [types.KeyboardButton(text=consts.setup)],
     ]
 
 awaiting_keyboard = types.ReplyKeyboardMarkup(keyboard=awaiting_kb,
                                               resize_keyboard=True,
                                               input_field_placeholder=consts.publish_placeholder
                                               )
+
+settings_kb = [
+        [types.KeyboardButton(text=consts.change_ad)],
+        [types.KeyboardButton(text=consts.backto_ads)],
+        [types.KeyboardButton(text=consts.likes)],
+        [types.KeyboardButton(text=consts.deactivate_profile)],
+    ]
+
+
+settings_keyboard = types.ReplyKeyboardMarkup(keyboard=settings_kb,
+                                              resize_keyboard=True,
+                                              input_field_placeholder=consts.setup_placeholder
+                                              )
+
 
 leaving_sure_kb = [
         [types.KeyboardButton(text=consts.deactivate_sure)],
@@ -174,7 +188,8 @@ tinder_keyboard = types.ReplyKeyboardMarkup(keyboard=tinder_kb,
                                             )
 
 see_likes_kb = [
-    [types.KeyboardButton(text=consts.got_like)],
+    [types.KeyboardButton(text=consts.likes)],
+    [types.KeyboardButton(text=consts.setup)],
     ]
 
 see_likes_keyboard = types.ReplyKeyboardMarkup(keyboard=see_likes_kb,
@@ -187,6 +202,7 @@ likes_kb = [
     [types.KeyboardButton(text=consts.like_actions[0]),
      types.KeyboardButton(text=consts.like_actions[1])],
     [types.KeyboardButton(text=consts.like_actions[2])],
+    [types.KeyboardButton(text=consts.pause_likes)],
     ]
 
 likes_keyboard = types.ReplyKeyboardMarkup(keyboard=likes_kb,
