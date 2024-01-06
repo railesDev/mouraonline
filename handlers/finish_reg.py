@@ -27,4 +27,4 @@ async def finish_reg(message: types.Message, state: FSMContext):
     F.text.len() <= 10
 )
 async def not_finished(message: types.Message, state: FSMContext):
-    await message.reply('Your ad is too short. Try something again!👇')
+    await message.reply(consts.ad_short_caption)
