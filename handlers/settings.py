@@ -10,7 +10,7 @@ import dboper
 from handlers.parse_ad import parse_ad
 
 @router.message(
-    F.text == consts.setup | F.text == consts.pause_likes
+    (F.text == consts.setup) | (F.text == consts.pause_likes)
 )
 async def setup(message: types.Message, state: FSMContext):
     # show ad, display buttons
