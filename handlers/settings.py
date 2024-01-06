@@ -7,7 +7,7 @@ from bot import c, conn
 import consts
 import logging
 import dboper
-from parse_ad import parse_ad
+from handlers.parse_ad import parse_ad
 
 @router.message(
     F.text == consts.setup | F.text == consts.pause_likes
