@@ -23,10 +23,10 @@ async def campus(message: types.Message, state: FSMContext):
                                caption=consts.campus_reaction_caption)
 
     # process individual case with Sedova
-    if message.text == 'Sedova 🏠':
+    if message.text == 'Седова 🏠':
         await state.update_data(campus=message.text)
         await state.set_state(User.program)
-        await state.update_data(program='Sociology 👥')
+        await state.update_data(program='Социология 👥')
         await state.set_state(User.course)
         await program.program(message, state)
         return
