@@ -15,7 +15,7 @@ async def access(message: types.Message, state: FSMContext) -> None:
     await state.set_state(User.gender)  # setting state that we wait for gender
 
 
-@router.message((F.text == consts.start_over | F.text == consts.change_ad))
+@router.message((F.text == consts.start_over) | (F.text == consts.change_ad))
 async def start_over(message: types.Message, state: FSMContext) -> None:
     await message.answer(consts.restart_caption)
     await message.answer_photo(consts.gender_photo,
