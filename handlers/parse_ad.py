@@ -25,7 +25,7 @@ def parse_ad(data):
             if key == "ntw_goal":
                 if bool(value):
                     goals.append(consts.goals[1])
-                sdata += ', '.join(value)+"\n"
+                sdata += ', '.join(goals)+"\n"
             if key == "gender_goals":
                 sdata += "<b>Предпочтения:</b> " + ('Девушки ‍👩' if value == 0
                                                                     else ('Без разницы 🤷' if value == 2
