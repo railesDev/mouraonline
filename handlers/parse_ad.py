@@ -12,7 +12,7 @@ def parse_ad(data):
             if key == "ad_text":
                 sdata = "<b>Описание:</b>\n"+value+"\n\n\n" + sdata
             if key == "goals":
-                sdata += "<b>"+key[0].upper()+key[1:]+":</b> "+', '.join(value)+"\n"
+                sdata += "<b>"+database[key]+":</b> "+', '.join(value)+"\n"
             if key == "gender_goals":
                 sdata += "<b>Предпочтения:</b> " + ('Девушки ‍👩' if value == 0
                                                                     else ('Без разницы 🤷' if value == 2
