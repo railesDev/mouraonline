@@ -1,5 +1,5 @@
 import logging
-
+database = {"id": "ID", "gender": "<b>Пол:</b> ", "campus": "<b>Корпус:</b> ", "program": "<b>ОП:</b> ", "course": "<b>Курс:</b> ", "ad_text": "<b>Описание:</b>\n", "goals": "<b>Цели:</b> ", "photo_id": "photo_id", "gender_goals": "<b>Предпочтения:</b> "}
 
 def parse_ad(data):
     sdata = ""
@@ -7,16 +7,16 @@ def parse_ad(data):
     logging.info("DATA to parse ad: "+str(data))
     for key, value in data.items():
         if key not in ["id", "ad_text", "goals", "photo_id", "gender_goals", "awaiting", "action", "matched"]:
-            sdata += "<b>"+key[0].upper()+key[1:]+":</b> "+(value if key != "gender" else "male" if value == 1 else "female")+"\n"
+            sdata += database[key]+(value if key != "gender" else "мужской" if value == 1 else "женский")+"\n"
         else:
             if key == "ad_text":
-                sdata = "<b>Description:</b>\n"+value+"\n\n\n" + sdata
+                sdata = "<b>Описание:</b>\n"+value+"\n\n\n" + sdata
             if key == "goals":
                 sdata += "<b>"+key[0].upper()+key[1:]+":</b> "+', '.join(value)+"\n"
             if key == "gender_goals":
-                sdata += "<b>Preferences:</b> " + ('Ladies ‍👩' if value == 0
-                                                                    else ('Both 🤷' if value == 2
-                                                                          else ('Guys 👨' if value == 1
+                sdata += "<b>Предпочтения:</b> " + ('Девушки ‍👩' if value == 0
+                                                                    else ('Без разницы 🤷' if value == 2
+                                                                          else ('Парни 👨' if value == 1
                                                                                 else None))) + "\n"
             if key == "photo_id":
                 photoid = value
