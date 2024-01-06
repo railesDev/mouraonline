@@ -56,6 +56,15 @@ def extract_user(conn, c, id_):
     return c.fetchone()
 
 
+def extract_ad(conn, c, id_):
+    c.execute('''
+                SELECT id, gender, campus, program, course, frd_goal, dts_goal, ntw_goal, gender_goals, photo_id, ad_text
+                FROM users
+                WHERE id = %s
+                LIMIT 1
+            ''', (id_,))
+    return c.fetchone()
+
 def find_match(conn, c, user_data):
     '''
     c.execute(
