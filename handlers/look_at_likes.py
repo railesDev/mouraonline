@@ -10,9 +10,13 @@ import asyncio
 import random
 
 
+match = False
+
 @dp.message(F.text == consts.likes)
 async def look_at_like(message: types.Message, state: FSMContext):
     res = dboper.find_like(conn, c, message.from_user.id)
+    global match
+    match = False
     if res is not None:  # we have likes left
         match_id = res[0]
         await state.update_data(awaiting=match_id)
@@ -41,11 +45,24 @@ async def match(message: types.Message, state: FSMContext):
     dboper.update_reaction(conn, c, data["awaiting"], 2)
     # later here will be some actions - choose context, choose place.
     logging.info("MATCHID: "+str(int(data['awaiting'])))
-    await message.answer(f"Write to [your new match\!](tg://user?id={int(data['awaiting'])})",
-                         parse_mode=ParseMode.MARKDOWN_V2)
-    # TODO: message.from_user.username -> TO DATABASE -> TO MATCH
+    global match
+    match = True
+    await message.answer_photo(consts.match_photo,
+                               consts.match_letter_caption)
+    # await message.answer(f"Write to [your new match\!](tg://user?id={int(data['awaiting'])})", parse_mode=ParseMode.MARKDOWN_V2)
     # TODO X2: send a message to match, no usernames will be saved or given.
     #  There you will be able to showcase your own username -> prebuilt scripts (share your username, set location, etc)
+
+
+@dp.message((F.text.len() > 0) & match)
+async def send_letter(message: types.Message, state: FSMContext):
+    data = await state.get_data()
+    await moura.send_message(chat_id=data["awaiting"],
+                             text=consts.matched+'\n\n'+message.text,
+                             reply_markup=ReplyKeyboardRemove())
+    await message.answer(consts.letter_sent_caption)
+    global match
+    match = False
     await look_at_like(message, state)  # view next like
     # to the one with whom we matched, will happen nothing. everything is on our initiative.
 
