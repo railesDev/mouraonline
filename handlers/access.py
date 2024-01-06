@@ -17,6 +17,7 @@ async def access(message: types.Message, state: FSMContext) -> None:
 
 @router.message((F.text == consts.start_over) | (F.text == consts.change_ad))
 async def start_over(message: types.Message, state: FSMContext) -> None:
+    await state.update_data(id=message.from_user.id)
     await message.answer(consts.restart_caption)
     await message.answer_photo(consts.gender_photo,
                                consts.gender_caption,
