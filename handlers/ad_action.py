@@ -22,13 +22,14 @@ async def perform_action(message: types.Message, state: FSMContext):
         await message.answer(consts.like_caption,
                              reply_markup=keyboards.awaiting_keyboard)
         await state.set_state(User.awaiting)
+        await state.update_data(awaiting=-1)
 
         # SPECIAL LINES TO CHECK INACTIVITY EACH 24 HOURS
         while True:
             await asyncio.sleep(86400)
             try:
                 data = await state.get_data()
-                if data['awaiting']:
+                if data['awaiting'] != -1:
                     pass
             except KeyError:
                 await message.answer(random.choice(consts.inactivity_caption))
@@ -39,13 +40,14 @@ async def perform_action(message: types.Message, state: FSMContext):
                              reply_markup=keyboards.awaiting_keyboard)
         # TODO: 100% NEXT AD WILL BE SENT
         await state.set_state(User.awaiting)
+        await state.update_data(awaiting=-1)
 
         # SPECIAL LINES TO CHECK INACTIVITY EACH 24 HOURS
         while True:
             await asyncio.sleep(86400)
             try:
                 data = await state.get_data()
-                if data['awaiting']:
+                if data['awaiting'] != -1:
                     pass
             except KeyError:
                 await message.answer(random.choice(consts.inactivity_caption))
@@ -55,13 +57,14 @@ async def perform_action(message: types.Message, state: FSMContext):
         await message.answer(consts.complain_caption,
                              reply_markup=keyboards.awaiting_keyboard)
         await state.set_state(User.awaiting)
+        await state.update_data(awaiting=-1)
 
         # SPECIAL LINES TO CHECK INACTIVITY EACH 24 HOURS
         while True:
             await asyncio.sleep(86400)
             try:
                 data = await state.get_data()
-                if data['awaiting']:
+                if data['awaiting'] != -1:
                     pass
             except KeyError:
                 await message.answer(random.choice(consts.inactivity_caption))
