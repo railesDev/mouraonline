@@ -1,4 +1,5 @@
 import logging
+import consts
 database = {"id": "ID", "gender": "<b>Пол:</b> ", "campus": "<b>Корпус:</b> ", "program": "<b>ОП:</b> ", "course": "<b>Курс:</b> ", "ad_text": "<b>Описание:</b>\n", "goals": "<b>Цели:</b> ", "photo_id": "photo_id", "gender_goals": "<b>Предпочтения:</b> "}
 
 def parse_ad(data):
@@ -6,13 +7,19 @@ def parse_ad(data):
     photoid = ""
     logging.info("DATA to parse ad: "+str(data))
     for key, value in data.items():
-        if key not in ["id", "ad_text", "goals", "photo_id", "gender_goals", "awaiting", "action", "matched"]:
+        if key not in ["frd_goal", "dts_goal", "ntw_goal", "id", "ad_text", "goals", "photo_id", "gender_goals", "awaiting", "action", "matched"]:
             sdata += database[key]+(value if key != "gender" else "мужской" if value == 1 else "женский")+"\n"
         else:
             if key == "ad_text":
                 sdata = "<b>Описание:</b>\n"+value+"\n\n\n" + sdata
             if key == "goals":
                 sdata += "<b>"+database[key]+":</b> "+', '.join(value)+"\n"
+            if key == "frd_goal":
+                sdata += "<b>Цели:</b> " + (consts.goals[2] if bool(value) else '')
+            if key == "dts_goal":
+                sdata += (consts.goals[0] if bool(value) else '')
+            if key == "ntw_goal":
+                sdata += (consts.goals[1] if bool(value) else '')
             if key == "gender_goals":
                 sdata += "<b>Предпочтения:</b> " + ('Девушки ‍👩' if value == 0
                                                                     else ('Без разницы 🤷' if value == 2
