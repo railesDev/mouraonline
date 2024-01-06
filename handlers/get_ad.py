@@ -35,6 +35,10 @@ async def get_new_ad(message: types.Message, state: FSMContext):
             await state.set_state(User.action)
             await state.update_data(awaiting=match_id[0])
             logging.info("found a recommendation.")
+            
+            # ??????
+            
+            
             break
         else:
             data = await state.get_data()
