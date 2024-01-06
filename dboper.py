@@ -46,9 +46,7 @@ def deactivate_user(conn, c, id_):
 def save_user(conn, c, data):
     c.execute('''INSERT INTO users (id, gender, campus, program, course, frd_goal, dts_goal, 
         ntw_goal, gender_goals, photo_id, ad_text) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-        ON CONFLICT (id) 
-        DO UPDATE SET 
-        (gender, campus, program, course, frd_goal, dts_goal, ntw_goal, gender_goals, photo_id, ad_text) = (EXCLUDED.gender, EXCLUDED.campus, EXCLUDED.program, EXCLUDED.course, EXCLUDED.frd_goal, EXCLUDED.dts_goal, EXCLUDED.ntw_goal, EXCLUDED.gender_goals, EXCLUDED.photo_id, EXCLUDED.ad_text)''', data)
+        ON CONFLICT (id) DO UPDATE SET (gender, campus, program, course, frd_goal, dts_goal, ntw_goal, gender_goals, photo_id, ad_text) = (EXCLUDED.*)''', data)
     conn.commit()
 
 
