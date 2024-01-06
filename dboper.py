@@ -16,7 +16,13 @@ def create_reactions(conn, c):
 def user_exists(c, id_):
     c.execute('''SELECT * FROM users WHERE id = %s''', (id_,))
     res = c.fetchone()
-    return (res if res else None)
+    code = -1
+    # code stands to check whether bot was just rebooted or user returns
+    # we need to check gender code at least - if it is 2, we need to reregister him
+    # otherwise we just take him to settings
+    if res:
+        code = (int(res[1]) == 2)
+    return [(res if res else None), code]
 
 
 def erase_user(conn, c, id_):
