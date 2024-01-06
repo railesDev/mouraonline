@@ -47,4 +47,4 @@ async def get_new_ad(message: types.Message, state: FSMContext):
                 await message.answer(consts.no_ads_caption,
                                      reply_markup=keyboards.awaiting_keyboard)
                 await state.update_data(awaiting=-1)
-        await asyncio.sleep(20)  # wait for 20 seconds before checking again
+        await asyncio.sleep(200)  # wait for 200 seconds before checking again
