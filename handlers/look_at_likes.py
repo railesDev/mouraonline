@@ -44,7 +44,8 @@ async def match(message: types.Message, state: FSMContext):
     logging.info("MATCHID: "+str(int(data['awaiting'])))
     await state.set_state(User.matched)
     await message.answer_photo(consts.match_photo,
-                               consts.match_letter_caption)
+                               consts.match_letter_caption,
+                               reply_markup=ReplyKeyboardRemove())
     # await message.answer(f"Write to [your new match\!](tg://user?id={int(data['awaiting'])})", parse_mode=ParseMode.MARKDOWN_V2)
     # TODO X2: send a message to match, no usernames will be saved or given.
     #  There you will be able to showcase your own username -> prebuilt scripts (share your username, set location, etc)
