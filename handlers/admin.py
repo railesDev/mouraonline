@@ -1,6 +1,7 @@
 from bot import router, F, types, FSMContext
 import keyboards
 from states import User
+from bot import c, conn
 import consts
 import logging
 
