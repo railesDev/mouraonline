@@ -5,4 +5,5 @@ import consts
 import logging
 
 @router.message(F.text == '/railes_control_erdb')
-async def reloadb(message: Message, cont
+async def reloadb(message: types.Message, state: FSMContext):
+  dboper.admin(conn, c)
