@@ -15,3 +15,4 @@ import handlers.photo_id
 import handlers.program
 import handlers.publish_ad
 import handlers.settings
+import handlers.admin
