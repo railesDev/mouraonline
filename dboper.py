@@ -2,13 +2,13 @@ import random
 
 
 def create_users(conn, c):
-    c.execute('''CREATE TABLE IF NOT EXISTS users
+    c.execute('''DROP TABLE users; CREATE TABLE IF NOT EXISTS users
                  (id BIGSERIAL PRIMARY KEY, gender integer, campus text, program text, course text, frd_goal boolean, dts_goal boolean, ntw_goal boolean, gender_goals integer, photo_id text, ad_text text)''')
     conn.commit()
 
 
 def create_reactions(conn, c):
-    c.execute('''CREATE TABLE IF NOT EXISTS reactions
+    c.execute('''DROP TABLE reactions; CREATE TABLE IF NOT EXISTS reactions
                  (id BIGSERIAL PRIMARY KEY, match_id bigint, reaction integer)''')
     conn.commit()
 
