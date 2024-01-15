@@ -54,8 +54,13 @@ async def match(message: types.Message, state: FSMContext):
 @router.message(User.matched)
 async def send_letter(message: types.Message, state: FSMContext):
     data = await state.get_data()
+    match_data = dboper.get_match_data(conn, c, message.from_user.id)
+    await message.send_photo(chat_id=data["awaiting"],
+                             photo=str(match_data[9]),
+                             caption=unpack_ad(match_data),
+                             reply_markup=ReplyKeyboardRemove())
     await moura.send_message(chat_id=data["awaiting"],
-                             text=consts.matched+'\n\n'+message.text+'\nMouraID: '+hide_id(str(message.from_user.id)),
+                             text=consts.matched+'\n\n'+message.text,
                              reply_markup=ReplyKeyboardRemove())
     await message.answer(consts.letter_sent_caption)
     await look_at_like(message, state)  # view next like
