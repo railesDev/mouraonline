@@ -39,7 +39,7 @@ async def look_at_like(message: types.Message, state: FSMContext):
 @dp.message(F.text == consts.like_actions[2])
 async def match(message: types.Message, state: FSMContext):
     data = await state.get_data()
-    dboper.update_reaction(conn, c, data["awaiting"], 2)
+    dboper.update_reaction(conn, c, data["awaiting"], message.from_user.id, 2)
     # later here will be some actions - choose context, choose place.
     logging.info("MATCHID: "+hide_id(str(int(data['awaiting']))))
     await state.set_state(User.matched)
