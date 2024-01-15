@@ -60,7 +60,7 @@ async def send_letter(message: types.Message, state: FSMContext):
                              reply_markup=ReplyKeyboardRemove())
     await moura.send_message(chat_id=data["awaiting"],
                              text=consts.matched[1]+'\n\n'+message.text,
-                             reply_markup=ReplyKeyboardRemove())
+                             reply_markup=keyboards.awaiting_keyboard)
     await message.answer(consts.letter_sent_caption)
     await look_at_like(message, state)  # view next like
     # to the one with whom we matched, will happen nothing. everything is on our initiative.
