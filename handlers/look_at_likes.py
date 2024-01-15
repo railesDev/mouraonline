@@ -55,7 +55,7 @@ async def match(message: types.Message, state: FSMContext):
 async def send_letter(message: types.Message, state: FSMContext):
     data = await state.get_data()
     await moura.send_message(chat_id=data["awaiting"],
-                             text=consts.matched+'\n\n'+'MouraID мэтча: '+hide_id(str(message.from_user.id))+"\n\n"+message.text,
+                             text=consts.matched+'\n\n'+message.text+'\nMouraID: '+hide_id(str(message.from_user.id)),
                              reply_markup=ReplyKeyboardRemove())
     await message.answer(consts.letter_sent_caption)
     await look_at_like(message, state)  # view next like
