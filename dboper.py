@@ -133,17 +133,17 @@ def react(conn, c, id_, match_id_, reaction):
     conn.commit()
 
 
-def update_reaction(conn, c, id_, reaction):
+def update_reaction(conn, c, id_, match_id_, reaction):
     c.execute(f'''
     UPDATE reactions
     SET reaction = %s
-    WHERE reaction != 2 AND id = %s
-    ''', (reaction, id_))
+    WHERE reaction != 2 AND id = %s AND match_id = %s
+    ''', (reaction, id_, match_id_))
     c.execute(f'''
     UPDATE reactions
     SET reaction = %s
-    WHERE reaction != 2 AND match_id = %s
-    ''', (reaction, id_))
+    WHERE reaction != 2 AND match_id = %s AND id = %s
+    ''', (reaction, id_, match_id_))
     conn.commit()
 
 
