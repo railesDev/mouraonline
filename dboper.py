@@ -105,7 +105,7 @@ def find_match(conn, c, user_data):
     AND NOT EXISTS (
     SELECT 1
     FROM reactions
-    WHERE reactions.match_id = users.id AND reactions.id = %s
+    WHERE reactions.match_id = users.id AND reactions.id = %s AND reactions.reaction != 2
     )
     AND users.id NOT IN (SELECT reactions.match_id FROM reactions WHERE reactions.id = users.id) 
     LIMIT 10''', (user_data[0], user_data[1], user_data[2], user_data[2], user_data[3], user_data[4], user_data[5], user_data[0],))
@@ -130,6 +130,13 @@ def react(conn, c, id_, match_id_, reaction):
     VALUES (%s, %s, %s)
     ON CONFLICT DO NOTHING
     ''', (id_, match_id_, reaction))
+    ##########
+    c.execute(f'''
+    INSERT INTO reactions (id, match_id, reaction)
+    VALUES (%s, %s, %s)
+    ON CONFLICT DO NOTHING
+    ''', (match_id_, id_, reaction))
+    ##########
     conn.commit()
 
 
