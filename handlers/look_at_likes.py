@@ -5,7 +5,7 @@ import dboper
 import consts
 import keyboards
 import logging
-from unpack_ad import unpack_ad
+from unpack_ad import unpack_ad, hide_id
 import asyncio
 import random
 
@@ -41,7 +41,7 @@ async def match(message: types.Message, state: FSMContext):
     data = await state.get_data()
     dboper.update_reaction(conn, c, data["awaiting"], 2)
     # later here will be some actions - choose context, choose place.
-    logging.info("MATCHID: "+str(int(data['awaiting'])))
+    logging.info("MATCHID: "+hide_id(str(int(data['awaiting']))))
     await state.set_state(User.matched)
     await message.answer_photo(consts.match_photo,
                                consts.match_letter_caption,
@@ -55,7 +55,7 @@ async def match(message: types.Message, state: FSMContext):
 async def send_letter(message: types.Message, state: FSMContext):
     data = await state.get_data()
     await moura.send_message(chat_id=data["awaiting"],
-                             text=consts.matched+'\n\n'+'MouraID мэтча: '+str(message.from_user.id)+"\n\n"+message.text,
+                             text=consts.matched+'\n\n'+'MouraID мэтча: '+hide_id(str(message.from_user.id))+"\n\n"+message.text,
                              reply_markup=ReplyKeyboardRemove())
     await message.answer(consts.letter_sent_caption)
     await look_at_like(message, state)  # view next like
