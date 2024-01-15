@@ -55,7 +55,7 @@ async def match(message: types.Message, state: FSMContext):
 async def send_letter(message: types.Message, state: FSMContext):
     data = await state.get_data()
     match_data = dboper.get_match_data(conn, c, message.from_user.id)
-    await message.send_photo(chat_id=data["awaiting"],
+    await moura.send_photo(chat_id=data["awaiting"],
                              photo=str(match_data[9]),
                              caption=unpack_ad(match_data),
                              reply_markup=ReplyKeyboardRemove())
