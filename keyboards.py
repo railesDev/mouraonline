@@ -177,9 +177,9 @@ return_keyboard = types.ReplyKeyboardMarkup(keyboard=return_kb,
 
 
 tinder_kb = [
-    [types.KeyboardButton(text=consts.actions[0]),
-     types.KeyboardButton(text=consts.actions[1])],
-    [types.KeyboardButton(text=consts.actions[2])],
+    [types.KeyboardButton(text=consts.actions[1]),
+     types.KeyboardButton(text=consts.actions[2])],
+    [types.KeyboardButton(text=consts.actions[0])],
     ]
 
 tinder_keyboard = types.ReplyKeyboardMarkup(keyboard=tinder_kb,
@@ -199,9 +199,9 @@ see_likes_keyboard = types.ReplyKeyboardMarkup(keyboard=see_likes_kb,
 
 
 likes_kb = [
-    [types.KeyboardButton(text=consts.like_actions[0]),
-     types.KeyboardButton(text=consts.like_actions[1])],
-    [types.KeyboardButton(text=consts.like_actions[2])],
+    [types.KeyboardButton(text=consts.like_actions[1]),
+     types.KeyboardButton(text=consts.like_actions[2])],
+    [types.KeyboardButton(text=consts.like_actions[0])],
     [types.KeyboardButton(text=consts.pause_likes)],
     ]
 
