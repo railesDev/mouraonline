@@ -69,7 +69,7 @@ async def send_letter(message: types.Message, state: FSMContext):
 @dp.message(F.text == consts.like_actions[1])
 async def no_match(message: types.Message, state: FSMContext):
     data = await state.get_data()
-    dboper.update_reaction(conn, c, data["awaiting"], 0)
+    dboper.update_reaction(conn, c, data["awaiting"], message.from_user.id, 0)
     await message.answer(consts.dislike_caption)
     await look_at_like(message, state)  # view next like
 
@@ -77,7 +77,7 @@ async def no_match(message: types.Message, state: FSMContext):
 @dp.message(F.text == consts.like_actions[0])
 async def match_complain(message: types.Message, state: FSMContext):
     data = await state.get_data()
-    dboper.update_reaction(conn, c, data["awaiting"], 0)
+    dboper.update_reaction(conn, c, data["awaiting"], message.from_user.id, 0)
     await message.answer(consts.complain_caption)
     await look_at_like(message, state)  # view next like
 
