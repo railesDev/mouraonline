@@ -6,7 +6,7 @@ import consts
 
 
 @router.message(
-   User.photo_id, (F.photo | F.text == consts.no_photo)
+   User.photo_id, ((F.photo) | (F.text == consts.no_photo))
 )
 async def photo_sent(message: types.Message, state: FSMContext) -> None:
     try:
