@@ -82,18 +82,6 @@ def extract_ad(conn, c, id_):
     return c.fetchone()
 
 def find_match(conn, c, user_data):
-    '''
-    c.execute(
-    SELECT users.id
-    FROM users
-    LEFT JOIN reactions ON (users.id = reactions.id AND users.id != %s AND (reactions.reaction != 0 AND reactions.reaction != 1 AND reactions.reaction != 2))
-    WHERE (
-    (users.gender_goals = %s OR users.gender_goals = 2) AND (users.gender = %s OR %s = 2) AND (users.frd_goal = %s OR users.dts_goal = %s OR users.ntw_goal = %s)
-    )
-    AND users.id NOT IN (SELECT reactions.match_id FROM reactions WHERE reactions.id = users.id) 
-    LIMIT 10
-    , (user_data[0], user_data[1], user_data[2], user_data[2], user_data[3], user_data[4], user_data[5],))
-    '''
     c.execute('''
     SELECT users.id
     FROM users
@@ -105,7 +93,7 @@ def find_match(conn, c, user_data):
     AND NOT EXISTS (
     SELECT 1
     FROM reactions
-    WHERE reactions.match_id = users.id AND reactions.id = %s AND reactions.reaction != 2
+    WHERE reactions.match_id = users.id AND reactions.id = %s AND reactions.reaction != 2 AND reactions.reaction != 1 AND reactions.reaction != 0
     )
     AND users.id NOT IN (SELECT reactions.match_id FROM reactions WHERE reactions.id = users.id) 
     LIMIT 10''', (user_data[0], user_data[1], user_data[2], user_data[2], user_data[3], user_data[4], user_data[5], user_data[0],))
@@ -171,3 +159,17 @@ def admin(conn, c):
     c.execute('''DROP TABLE reactions; CREATE TABLE IF NOT EXISTS reactions
                  (id BIGSERIAL PRIMARY KEY, match_id bigint, reaction integer)''')
     conn.commit()
+
+
+'''
+    c.execute(
+    SELECT users.id
+    FROM users
+    LEFT JOIN reactions ON (users.id = reactions.id AND users.id != %s AND (reactions.reaction != 0 AND reactions.reaction != 1 AND reactions.reaction != 2))
+    WHERE (
+    (users.gender_goals = %s OR users.gender_goals = 2) AND (users.gender = %s OR %s = 2) AND (users.frd_goal = %s OR users.dts_goal = %s OR users.ntw_goal = %s)
+    )
+    AND users.id NOT IN (SELECT reactions.match_id FROM reactions WHERE reactions.id = users.id) 
+    LIMIT 10
+    , (user_data[0], user_data[1], user_data[2], user_data[2], user_data[3], user_data[4], user_data[5],))
+'''
