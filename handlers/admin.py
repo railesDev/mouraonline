@@ -21,6 +21,9 @@ async def sendmsg(message: types.Message, state: FSMContext):
 
 @router.message(F.text == '/railes_control_displ')
 async def displ(message: types.Message, state: FSMContext):
-  rows = dboper.admin_displ(conn, c)
+  rows = dboper.admin_displ_re(conn, c)
+  for row in rows:
+    await moura.send_message(chat_id=message.from_user.id, text=row)
+  rows = dboper.admin_displ_users(conn, c)
   for row in rows:
     await moura.send_message(chat_id=message.from_user.id, text=row)
