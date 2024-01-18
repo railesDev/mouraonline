@@ -116,7 +116,7 @@ def react(conn, c, id_, match_id_, reaction):
     c.execute(f'''
     INSERT INTO reactions (id, match_id, reaction)
     VALUES (%s, %s, %s)
-    ON CONFLICT (id) 
+    ON CONFLICT (match_id) 
         DO UPDATE SET 
         reaction = EXCLUDED.reaction
     ''', (id_, match_id_, reaction))
@@ -124,7 +124,7 @@ def react(conn, c, id_, match_id_, reaction):
     c.execute(f'''
     INSERT INTO reactions (id, match_id, reaction)
     VALUES (%s, %s, %s)
-    ON CONFLICT (id) 
+    ON CONFLICT (match_id) 
         DO UPDATE SET 
         reaction = EXCLUDED.reaction
     ''', (match_id_, id_, reaction))
