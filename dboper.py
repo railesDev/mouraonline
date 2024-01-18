@@ -161,8 +161,9 @@ def admin(conn, c):
     c.execute('''DROP TABLE users; CREATE TABLE IF NOT EXISTS users
                  (id BIGSERIAL PRIMARY KEY, gender integer, campus text, program text, course text, frd_goal boolean, dts_goal boolean, ntw_goal boolean, gender_goals integer, photo_id text, ad_text text)''')
     conn.commit()
-    c.execute('''DROP TABLE reactions; CREATE TABLE IF NOT EXISTS reactions
-                 (id BIGSERIAL PRIMARY KEY, match_id bigint, reaction integer)''')
+    c.execute('''DROP TABLE reactions; DROP SEQUENCE reactions_id_seq; CREATE SEQUENCE reactions_id_seq;
+                 CREATE TABLE IF NOT EXISTS reactions
+                 (reactions_id BIGSERIAL PRIMARY KEY, id bigint, match_id bigint, reaction integer)''')
     conn.commit()
 
 def admin_displ_re(conn, c):
