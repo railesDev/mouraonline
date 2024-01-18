@@ -115,16 +115,16 @@ def get_match_data(conn, c, match_id):
 
 def react(conn, c, id_, match_id_, reaction):
     c.execute(f'''
-    INSERT INTO reactions (id, match_id, reaction)
-    VALUES (%s, %s, %s)
+    INSERT INTO reactions (reactions_id, id, match_id, reaction)
+    VALUES (nextval('reactions_id_seq'), %s, %s, %s)
     ON CONFLICT (id, match_id) DO UPDATE
     SET reaction = EXCLUDED.reaction
     WHERE reactions.reaction != EXCLUDED.reaction
     ''', (id_, match_id_, reaction))
     ##########
     c.execute(f'''
-    INSERT INTO reactions (id, match_id, reaction)
-    VALUES (%s, %s, %s)
+    INSERT INTO reactions (reactions_id, id, match_id, reaction)
+    VALUES (nextval('reactions_id_seq'), %s, %s, %s)
     ON CONFLICT (id, match_id) DO UPDATE
     SET reaction = EXCLUDED.reaction
     WHERE reactions.reaction != EXCLUDED.reaction
