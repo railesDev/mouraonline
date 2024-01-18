@@ -14,6 +14,7 @@ from handlers.parse_ad import parse_ad
 )
 async def setup(message: types.Message, state: FSMContext):
     # show ad, display buttons
+    await state.set_state(awaiting)
     user_data = dboper.extract_ad(conn, c, message.from_user.id)
     logging.info("USER SETUP DATA: " + str(user_data) + "\n\n\n")
     keys = ['id', 'gender', 'campus', 'program', 'course', 'frd_goal', 'dts_goal', 'ntw_goal', 'gender_goals', 'photo_id', 'ad_text']
