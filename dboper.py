@@ -164,8 +164,13 @@ def admin(conn, c):
                  (id BIGSERIAL PRIMARY KEY, match_id bigint, reaction integer)''')
     conn.commit()
 
-def admin_displ(conn, c):
-    c.execute("SELECT * FROM your_table")
+def admin_displ_re(conn, c):
+    c.execute("SELECT * FROM reactions")
+    rows = c.fetchall()
+    return rows
+
+def admin_displ_users(conn, c):
+    c.execute("SELECT * FROM users")
     rows = c.fetchall()
     return rows
 
