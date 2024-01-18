@@ -8,7 +8,7 @@ def create_users(conn, c):
 
 
 def create_reactions(conn, c):
-    c.execute('''CREATE SEQUENCE reactions_id_seq;
+    c.execute('''CREATE SEQUENCE IF NOT EXISTS reactions_id_seq;
                  CREATE TABLE IF NOT EXISTS reactions
                  (reactions_id BIGSERIAL PRIMARY KEY, id bigint, match_id bigint, reaction integer)''')
     conn.commit()
