@@ -115,7 +115,7 @@ def get_match_data(conn, c, match_id):
 
 def react(conn, c, id_, match_id_, reaction):
     c.execute("SELECT EXISTS(SELECT 1 FROM reactions WHERE id = %s AND match_id = %s);", (id_, match_id_))
-    exists = cur.fetchone()[0]
+    exists = c.fetchone()[0]
 
     # If the row exists and the reaction is different, update it
     if exists:
