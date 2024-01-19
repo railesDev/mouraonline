@@ -114,23 +114,46 @@ def get_match_data(conn, c, match_id):
 
 
 def react(conn, c, id_, match_id_, reaction):
-    c.execute(f'''
+    cur.execute("SELECT EXISTS(SELECT 1 FROM reactions WHERE id = %s AND match_id = %s);", (id_, match_id_))
+    exists = cur.fetchone()[0]
+
+    # If the row exists and the reaction is different, update it
+    if exists:
+        cur.execute("""
+            UPDATE reactions
+            SET reaction = %s
+            WHERE id = %s AND match_id = %s AND reaction != %s;
+        """, (reaction, id_, match_id_, reaction))
+    else:
+        # If the row does not exist, insert a new row
+        cur.execute("""
+            INSERT INTO reactions (reactions_id, id, match_id, reaction)
+            SELECT nextval('reactions_id_seq'), %s, %s, %s
+            WHERE NOT EXISTS (SELECT 1 FROM reactions WHERE id = %s AND match_id = %s);
+        """, (id_, match_id_, reaction, id_, match_id_))
+
+    conn.commit()
+
+
+    '''
+    c.execute(f
     INSERT INTO reactions (reactions_id, id, match_id, reaction)
     VALUES (nextval('reactions_id_seq'), %s, %s, %s)
     ON CONFLICT (id, match_id) DO UPDATE
     SET reaction = EXCLUDED.reaction
     WHERE reactions.reaction != EXCLUDED.reaction
-    ''', (id_, match_id_, reaction))
+    , (id_, match_id_, reaction))
     ##########
-    c.execute(f'''
+    c.execute(f
     INSERT INTO reactions (reactions_id, id, match_id, reaction)
     VALUES (nextval('reactions_id_seq'), %s, %s, %s)
     ON CONFLICT (id, match_id) DO UPDATE
     SET reaction = EXCLUDED.reaction
     WHERE reactions.reaction != EXCLUDED.reaction
-    ''', (match_id_, id_, reaction))
+    , (match_id_, id_, reaction))
     ##########
     conn.commit()
+    '''
 
 
 def update_reaction(conn, c, id_, match_id_, reaction):
