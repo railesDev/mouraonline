@@ -124,6 +124,11 @@ def react(conn, c, id_, match_id_, reaction):
             SET reaction = %s
             WHERE id = %s AND match_id = %s AND reaction != %s;
         """, (reaction, id_, match_id_, reaction))
+        cur.execute("""
+            UPDATE reactions
+            SET reaction = %s
+            WHERE id = %s AND match_id = %s AND reaction != %s;
+        """, (reaction, match_id_, id_, reaction))
     else:
         # If the row does not exist, insert a new row
         cur.execute("""
@@ -131,6 +136,11 @@ def react(conn, c, id_, match_id_, reaction):
             SELECT nextval('reactions_id_seq'), %s, %s, %s
             WHERE NOT EXISTS (SELECT 1 FROM reactions WHERE id = %s AND match_id = %s);
         """, (id_, match_id_, reaction, id_, match_id_))
+        cur.execute("""
+            INSERT INTO reactions (reactions_id, id, match_id, reaction)
+            SELECT nextval('reactions_id_seq'), %s, %s, %s
+            WHERE NOT EXISTS (SELECT 1 FROM reactions WHERE id = %s AND match_id = %s);
+        """, (match_id_, id_, reaction, match_id_, id_))
 
     conn.commit()
 
