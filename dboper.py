@@ -114,29 +114,29 @@ def get_match_data(conn, c, match_id):
 
 
 def react(conn, c, id_, match_id_, reaction):
-    cur.execute("SELECT EXISTS(SELECT 1 FROM reactions WHERE id = %s AND match_id = %s);", (id_, match_id_))
+    c.execute("SELECT EXISTS(SELECT 1 FROM reactions WHERE id = %s AND match_id = %s);", (id_, match_id_))
     exists = cur.fetchone()[0]
 
     # If the row exists and the reaction is different, update it
     if exists:
-        cur.execute("""
+        c.execute("""
             UPDATE reactions
             SET reaction = %s
             WHERE id = %s AND match_id = %s AND reaction != %s;
         """, (reaction, id_, match_id_, reaction))
-        cur.execute("""
+        c.execute("""
             UPDATE reactions
             SET reaction = %s
             WHERE id = %s AND match_id = %s AND reaction != %s;
         """, (reaction, match_id_, id_, reaction))
     else:
         # If the row does not exist, insert a new row
-        cur.execute("""
+        c.execute("""
             INSERT INTO reactions (reactions_id, id, match_id, reaction)
             SELECT nextval('reactions_id_seq'), %s, %s, %s
             WHERE NOT EXISTS (SELECT 1 FROM reactions WHERE id = %s AND match_id = %s);
         """, (id_, match_id_, reaction, id_, match_id_))
-        cur.execute("""
+        c.execute("""
             INSERT INTO reactions (reactions_id, id, match_id, reaction)
             SELECT nextval('reactions_id_seq'), %s, %s, %s
             WHERE NOT EXISTS (SELECT 1 FROM reactions WHERE id = %s AND match_id = %s);
