@@ -11,14 +11,20 @@ from handlers import parse_ad
     F.text.len() > 10
 )
 async def finish_reg(message: types.Message, state: FSMContext):
-    await state.update_data(ad_text=message.text)
-    data = await state.get_data()
-    sdata = parse_ad.parse_ad(data)
-    await message.answer_photo(sdata[1],
+    # MouraCensor
+    
+    #
+    if suitable:
+        await state.update_data(ad_text=message.text)
+        data = await state.get_data()
+        sdata = parse_ad.parse_ad(data)
+        await message.answer_photo(sdata[1],
                                caption=consts.finish_caption(sdata[0]),
                                reply_markup=keyboards.last_keyboard
                                )
-    await state.set_state(User.finished)
+        await state.set_state(User.finished)
+    else:
+        await message.reply(consts.ad_incorrect_caption)
 
 
 # Ad is too short
