@@ -4,6 +4,7 @@ import keyboards
 from states import User
 import consts
 from handlers import parse_ad
+import re
 
 
 @router.message(
@@ -12,7 +13,11 @@ from handlers import parse_ad
 )
 async def finish_reg(message: types.Message, state: FSMContext):
     # MouraCensor
-    
+    suitable = True
+    stop_words = ' '
+    m = message.text.lower()
+    p = re.compile(r'(ук([раинаеойцы]{3,}))|(россия)|(рашка)|(раися)|(путин[уа]*)|(навальн[ыйому]+)|(укропы)|(лох)|(сука)|(ебал)|(ебать)|(ху[йея])|(хер)|(пизд)|(пидор)|(пидар)|(гандон)|(твар[иь])|(ненавижу)|(суицид)|(гнида)|(сос[ауёеи])|(секс)|(переспать)|(трахну)|(ебу)|(еб\s)|(ёб\s)|(войду)|(куни)|(член)|(пенис)|(сиськи)|(выбор[ыа])|(лизать)|(дурак)|(идиот)|(жирный)|(урод)|(говно)|(дерьмо)|(параша)|(хохл)|(бля)|(тво[яюе] мат)|(твой батя)|(иди)')
+    suitable = not bool(len(p.findall(m)))
     #
     if suitable:
         await state.update_data(ad_text=message.text)
