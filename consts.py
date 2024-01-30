@@ -67,10 +67,10 @@ def campus_caption(gender):
 
 
 campus_options = ['Кантемировская 🏭', 'Грибоедова 🏨', 'Промышленная 🏫', 'Седова 🏠']
-kanta_photo = 'https://cutt.ly/awYogHta'
-griba_photo = 'https://cutt.ly/MwYogMg4'
-proma_photo = 'https://cutt.ly/CwYog9ZH'
-sedova_photo = 'https://cutt.ly/0wYog5yQ'
+kanta_photo = 'https://cutt.ly/QwZEix1v'
+griba_photo = 'https://cutt.ly/hwZEiRm9'
+proma_photo = 'https://cutt.ly/owZEii2A'
+sedova_photo = 'https://cutt.ly/QwZEu28V'
 
 
 def campus_reaction_photo(campus):
