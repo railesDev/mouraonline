@@ -29,7 +29,7 @@ async def perform_action(message: types.Message, state: FSMContext):
             await asyncio.sleep(86400)
             try:
                 data = await state.get_data()
-                if data['awaiting'] != -1:
+                if data['awaiting'] > 0:
                     pass
             except KeyError:
                 await message.answer(random.choice(consts.inactivity_caption))
@@ -47,7 +47,7 @@ async def perform_action(message: types.Message, state: FSMContext):
             await asyncio.sleep(86400)
             try:
                 data = await state.get_data()
-                if data['awaiting'] != -1:
+                if data['awaiting'] > 0:
                     pass
             except KeyError:
                 await message.answer(random.choice(consts.inactivity_caption))
@@ -64,7 +64,7 @@ async def perform_action(message: types.Message, state: FSMContext):
             await asyncio.sleep(86400)
             try:
                 data = await state.get_data()
-                if data['awaiting'] != -1:
+                if data['awaiting'] > 0:
                     pass
             except KeyError:
                 await message.answer(random.choice(consts.inactivity_caption))
