@@ -30,7 +30,7 @@ async def perform_action(message: types.Message, state: FSMContext):
             try:
                 data = await state.get_data()
                 if data['awaiting'] > 0:
-                    pass
+                    break
             except KeyError:
                 await message.answer(random.choice(consts.inactivity_caption))
 
@@ -48,7 +48,7 @@ async def perform_action(message: types.Message, state: FSMContext):
             try:
                 data = await state.get_data()
                 if data['awaiting'] > 0:
-                    pass
+                    break
             except KeyError:
                 await message.answer(random.choice(consts.inactivity_caption))
 
@@ -65,6 +65,6 @@ async def perform_action(message: types.Message, state: FSMContext):
             try:
                 data = await state.get_data()
                 if data['awaiting'] > 0:
-                    pass
+                    break
             except KeyError:
                 await message.answer(random.choice(consts.inactivity_caption))
