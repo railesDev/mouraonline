@@ -29,8 +29,8 @@ async def look_at_like(message: types.Message, state: FSMContext):
             await asyncio.sleep(86400)
             try:
                 data = await state.get_data()
-                if data['awaiting'] != -1:
-                    pass
+                if data['awaiting'] > 0:
+                    break
             except KeyError:
                 await message.answer(random.choice(consts.inactivity_caption))
 
