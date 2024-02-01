@@ -13,6 +13,11 @@ async def start(message: types.Message, state: FSMContext) -> None:
     await state.clear()
     # check if the user cleared history and tried to launch the /start again:
     result, code = dboper.user_exists(c, message.from_user.id)
+    while True:
+        data = await state.get_data()
+        await message.answer(random.choice(consts.inactivity_caption))
+        if 1 == 1:
+            break
     if result is not None:
         await message.answer(consts.start_caption)
         if code:
