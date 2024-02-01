@@ -4,6 +4,7 @@ from states import User
 import dboper
 import consts
 import logging
+import random
 import keyboards
 from handlers.settings import setup
 
