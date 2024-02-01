@@ -122,12 +122,12 @@ def react(conn, c, id_, match_id_, reaction):
         c.execute("""
             UPDATE reactions
             SET reaction = %s
-            WHERE id = %s AND match_id = %s AND reaction != %s;
+            WHERE id = %s AND match_id = %s AND reaction != %s AND reaction != 2;
         """, (reaction, id_, match_id_, reaction))
         c.execute("""
             UPDATE reactions
             SET reaction = %s
-            WHERE id = %s AND match_id = %s AND reaction != %s;
+            WHERE id = %s AND match_id = %s AND reaction != %s AND reaction != 2;
         """, (reaction, match_id_, id_, reaction))
     else:
         # If the row does not exist, insert a new row
