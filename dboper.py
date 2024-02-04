@@ -237,6 +237,11 @@ def admin_displ_users(conn, c):
     rows = c.fetchall()
     return rows
 
+def admin_displ_blacklist(conn, c):
+    c.execute("SELECT * FROM blacklist")
+    rows = c.fetchall()
+    return rows
+
 '''
     c.execute(
     SELECT users.id
