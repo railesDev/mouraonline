@@ -42,11 +42,9 @@ def check_blacklist(conn, c, id_):
     c.execute('''
                 SELECT id, user_id
                 FROM blacklist
-                WHERE id = %s
+                WHERE user_id = %s
             ''', (id_,))
-    g = c.fetchone()
-    logging.info(g)
-    return bool(g)
+    return (c.fetchone() is not None)
 
 
 def user_exists(c, id_):
