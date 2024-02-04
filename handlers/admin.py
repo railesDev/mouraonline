@@ -8,7 +8,7 @@ import dboper
 
 
 @router.message(F.text.startswith('/railes_control_blacklist'))
-async def sendmsg(message: types.Message, state: FSMContext):
+async def ban_oper(message: types.Message, state: FSMContext):
   mouraid, tag = message.text.split('/ ')[1:]
   ch_id = int(mouraid[:4]+mouraid[7:9]+mouraid[10:])
   if tag == '-b':
