@@ -21,6 +21,23 @@ def create_blacklist(conn, c):
     conn.commit()
 
 
+def blacklist_user(conn, c, id_):
+    c.execute("""
+            INSERT INTO blacklist (id, user_id)
+            SELECT nextval('blacklist_id_seq'), %s
+            WHERE NOT EXISTS (SELECT 1 FROM blacklist WHERE user_id = %s);
+        """, (id_, id_,))
+
+
+def check_blacklist(conn, c, id_):
+    c.execute('''
+                SELECT id, user_id
+                FROM blacklist
+                WHERE id = %s
+            ''', (id_,))
+    return bool(c.fetchone())
+
+
 def user_exists(c, id_):
     c.execute('''SELECT * FROM users WHERE id = %s''', (id_,))
     res = c.fetchone()
