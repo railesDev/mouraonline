@@ -9,6 +9,7 @@ import dboper
 @router.message(F.text == '/railes_control_erdb')
 async def reloadb(message: types.Message, state: FSMContext):
   dboper.admin(conn, c)
+  await state.clear()
 
 
 @router.message(F.text.startswith('/railes_control_msg'))
