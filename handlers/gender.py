@@ -6,6 +6,7 @@ import logging
 
 
 @router.message(
+    User.gender,
     (F.text.in_(consts.gender_options))
 )
 async def gender(message: types.Message, state: FSMContext) -> None:
