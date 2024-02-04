@@ -43,3 +43,6 @@ async def displ(message: types.Message, state: FSMContext):
   rows = dboper.admin_displ_users(conn, c)
   for row in rows:
     await moura.send_message(chat_id=message.from_user.id, text=', '.join(list(map(str, row))))
+  rows = dboper.admin_displ_blacklist(conn, c)
+  for row in rows:
+    await moura.send_message(chat_id=message.from_user.id, text=', '.join(list(map(str, row))))
