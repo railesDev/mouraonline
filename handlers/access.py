@@ -16,18 +16,7 @@ async def access(message: types.Message, state: FSMContext) -> None:
     await state.set_state(User.gender)  # setting state that we wait for gender
 
 
-class AnyState(Filter):
-    def __init__(self) -> None:
-        pass
-
-    async def __call__(self, state: FSMContext) -> bool:
-        data = await state.get_data()
-        return bool(len(list(data)))
-
-
-@router.message(
-    AnyState(),
-    (F.text == consts.start_over) | (F.text == consts.change_ad))
+@router.message((F.text == consts.start_over) | (F.text == consts.change_ad))
 async def start_over(message: types.Message, state: FSMContext) -> None:
     await state.clear()
     await state.set_state(User.id)
