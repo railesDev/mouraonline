@@ -1,8 +1,9 @@
-from bot import router, F, types, FSMContext, c, conn
+from bot import router, F, types, FSMContext, c, conn, F
 import keyboards
 from states import User
 import consts
 import dboper
+from aiogram.filters import Filter
 
 
 @router.message(User.id, (F.text.upper() == consts.access_code))
@@ -13,6 +14,15 @@ async def access(message: types.Message, state: FSMContext) -> None:
                                consts.gender_caption,
                                reply_markup=keyboards.keyboard_gender)
     await state.set_state(User.gender)  # setting state that we wait for gender
+
+
+class AnyState(Filter):
+    def __init__(self) -> None:
+        data = await state.get_data()
+        self.istate = bool(data)
+
+    async def __call__(self, message: Message) -> bool:
+        return message.text == self.my_text
 
 
 @router.message((F.text == consts.start_over) | (F.text == consts.change_ad))
