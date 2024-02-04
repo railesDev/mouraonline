@@ -11,6 +11,10 @@ from handlers.settings import setup
 @router.message((F.text == '/start') | (F.text == consts.reactivate_profile))
 async def start(message: types.Message, state: FSMContext) -> None:
     await state.clear()
+    blacklisted = dboper.check_blacklist(conn, c, message.from_user.id)
+    if blacklisted:
+        await message.answer(consts.blacklisted_caption)
+        return
     # check if the user cleared history and tried to launch the /start again:
     result, code = dboper.user_exists(c, message.from_user.id)
     if result is not None:
