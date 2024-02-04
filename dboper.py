@@ -14,6 +14,13 @@ def create_reactions(conn, c):
     conn.commit()
 
 
+def create_blacklist(conn, c):
+    c.execute('''CREATE SEQUENCE IF NOT EXISTS blacklist_id_seq;
+                 CREATE TABLE IF NOT EXISTS blacklist
+                 (id BIGSERIAL PRIMARY KEY, user_id bigint)''')
+    conn.commit()
+
+
 def user_exists(c, id_):
     c.execute('''SELECT * FROM users WHERE id = %s''', (id_,))
     res = c.fetchone()
