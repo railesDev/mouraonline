@@ -16,6 +16,7 @@ from unpack_ad import unpack_ad
     (F.text == consts.show_ad) | (F.text == consts.backto_ads)
 )
 async def get_new_ad(message: types.Message, state: FSMContext):
+    blacklisted = dboper.check_blacklist(conn, c, message.from_user.id)
     if blacklisted:
         await message.answer(consts.blacklisted_caption)
         await state.clear()
