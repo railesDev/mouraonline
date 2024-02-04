@@ -12,6 +12,11 @@ import random
 
 @dp.message(F.text == consts.likes)
 async def look_at_like(message: types.Message, state: FSMContext):
+    blacklisted = dboper.check_blacklist(conn, c, message.from_user.id)
+    if blacklisted:
+        await message.answer(consts.blacklisted_caption)
+        await state.clear()
+        return
     res = dboper.find_like(conn, c, message.from_user.id)
     if res is not None:  # we have likes left
         match_id = res[0]
