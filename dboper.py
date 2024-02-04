@@ -28,6 +28,10 @@ def blacklist_user(conn, c, id_):
             WHERE NOT EXISTS (SELECT 1 FROM blacklist WHERE user_id = %s);
         """, (id_, id_,))
 
+def unblacklist_user(conn, c, id_):
+    c.execute('''DELETE FROM blacklist WHERE user_id = %s''', (id_,))
+    conn.commit()
+
 
 def check_blacklist(conn, c, id_):
     c.execute('''
