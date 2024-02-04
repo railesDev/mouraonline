@@ -27,6 +27,10 @@ def blacklist_user(conn, c, id_):
             SELECT nextval('blacklist_id_seq'), %s
             WHERE NOT EXISTS (SELECT 1 FROM blacklist WHERE user_id = %s);
         """, (id_, id_,))
+    c.execute('''DELETE FROM users WHERE id = %s''', (id_,))
+    c.execute('''DELETE FROM reactions WHERE id = %s''', (id_,))
+    c.execute('''DELETE FROM reactions WHERE match_id = %s''', (id_,))
+    conn.commit()
 
 def unblacklist_user(conn, c, id_):
     c.execute('''DELETE FROM blacklist WHERE user_id = %s''', (id_,))
