@@ -14,8 +14,7 @@ def parse_ad(data):
             if key == "ad_text":
                 sdata = "<b>Описание:</b>\n"+value+"\n\n\n" + sdata
             if key == "goals":
-                sdata += "какая-то фигня"
-                sdata += "<b>"+database[key]+":</b> "+', '.join(value)+"\n"
+                sdata += database[key]+', '.join(value)+"\n"
             if key == "frd_goal":
                 sdata += "<b>Цели:</b> "
                 if bool(value):
