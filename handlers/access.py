@@ -19,6 +19,10 @@ async def access(message: types.Message, state: FSMContext) -> None:
 @router.message((F.text == consts.start_over) | (F.text == consts.change_ad))
 async def start_over(message: types.Message, state: FSMContext) -> None:
     await state.clear()
+    blacklisted = dboper.check_blacklist(conn, c, message.from_user.id)
+    if blacklisted:
+        await message.answer(consts.blacklisted_caption)
+        return
     await state.set_state(User.id)
     await state.update_data(id=message.from_user.id)
     await message.answer(consts.restart_caption)
