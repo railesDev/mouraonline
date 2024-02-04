@@ -16,6 +16,10 @@ from unpack_ad import unpack_ad
     (F.text == consts.show_ad) | (F.text == consts.backto_ads)
 )
 async def get_new_ad(message: types.Message, state: FSMContext):
+    if blacklisted:
+        await message.answer(consts.blacklisted_caption)
+        await state.clear()
+        return
     await state.update_data(awaiting=0) # user decided to wait for a new ad
     logging.info("WARNING: WARNING: WARNING: Started searching for matches\n\n\n")
     # extract our current user info
