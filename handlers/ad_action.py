@@ -13,6 +13,11 @@ import asyncio
     F.text.in_(consts.actions)
 )
 async def perform_action(message: types.Message, state: FSMContext):
+    blacklisted = dboper.check_blacklist(conn, c, message.from_user.id)
+    if blacklisted:
+        await message.answer(consts.blacklisted_caption)
+        await state.clear()
+        return
     data = await state.get_data()
     if message.text == consts.actions[2]:
         dboper.react(conn, c, message.from_user.id, data["awaiting"], 1)
