@@ -1,4 +1,5 @@
 import random
+import logging
 
 
 def create_users(conn, c):
@@ -43,7 +44,9 @@ def check_blacklist(conn, c, id_):
                 FROM blacklist
                 WHERE id = %s
             ''', (id_,))
-    return bool(c.fetchone())
+    g = c.fetchone()
+    logging.info(g)
+    return bool(g)
 
 
 def user_exists(c, id_):
