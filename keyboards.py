@@ -93,7 +93,7 @@ def goals_keyboard():
     for goal in consts.goals:
         goals_builder.add(types.InlineKeyboardButton(text=goal, callback_data=goal))
     goals_builder.add(types.InlineKeyboardButton(text=consts.save_goals, callback_data='save'))
-    goals_builder.adjust(3, 1, repeat=True)
+    goals_builder.adjust(1, 2, 1, repeat=True)
     return goals_builder
 
 
