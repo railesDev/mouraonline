@@ -13,6 +13,11 @@ from handlers.parse_ad import parse_ad
     (F.text == consts.setup) | (F.text == consts.pause_likes) | (F.text == consts.deactivate_no)
 )
 async def setup(message: types.Message, state: FSMContext):
+    blacklisted = dboper.check_blacklist(conn, c, message.from_user.id)
+    if blacklisted:
+        await message.answer(consts.blacklisted_caption)
+        await state.clear()
+        return
     # show ad, display buttons
     await state.set_state(User.awaiting)
     user_data = dboper.extract_ad(conn, c, message.from_user.id)
