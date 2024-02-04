@@ -23,6 +23,7 @@ conn = psycopg2.connect(
 c = conn.cursor()
 dboper.create_users(conn, c)
 dboper.create_reactions(conn, c)
+dboper.create_blacklist(conn, c)
 
 
 
