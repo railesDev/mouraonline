@@ -8,7 +8,7 @@ import dboper
 
 
 @router.message(F.text.startswith('/valentine'))
-async def ban_oper(message: types.Message, state: FSMContext):
+async def send_valentine(message: types.Message, state: FSMContext):
   valentine = message.text[10:]
   photo = ''
   try:
