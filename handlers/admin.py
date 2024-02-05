@@ -10,12 +10,12 @@ import dboper
 @router.message(F.text.startswith('/valentine'))
 async def ban_oper(message: types.Message, state: FSMContext):
   valentine = message.text[10:]
-  photo = -1
+  photo = ''
   try:
     photo = message.photo[-1].file_id
   except Exception:
     pass
-  if photo == -1:
+  if not photo:
     await moura.send_message(chat_id=6319974658, text=valentine)
     await message.answer(consts.valentine_sent)
   else:
