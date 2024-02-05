@@ -7,18 +7,18 @@ import logging
 import dboper
 
 
-@router.message(F.text.startswith('/valentine'))
+@router.message(F.text.startswith('/valentine') & F.content_type.in_({'text', 'photo'}))
 async def send_valentine(message: types.Message, state: FSMContext):
-  valentine = message.text[10:]
   ph = ''
   try:
     ph = message.photo[-1].file_id
+    valentine = message.caption
   except Exception:
-    pass
+    valentine = message.text[10:]
   await message.answer(consts.valentine_sent)
   if not ph:
     await moura.send_message(chat_id=6319974658, text=valentine)
-  else:
+  elif ph:
     await moura.send_photo(chat_id=6319974658, photo=ph, caption=valentine)
     
 
