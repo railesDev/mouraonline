@@ -17,7 +17,7 @@ async def send_valentine(message: types.Message, state: FSMContext):
       await message.answer(consts.short_valentine)
       return
     ph = message.photo[-1].file_id
-    valentine = message.caption
+    valentine = message.caption[10:]
   except Exception:
     if len(message.text[10:]) < 6:
       await message.answer(consts.short_valentine)
