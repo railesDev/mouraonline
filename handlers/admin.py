@@ -7,10 +7,12 @@ import logging
 import dboper
 
 
-@router.message(F.text.startswith('/valentine') & F.content_type.in_({'text', 'photo'}))
+@router.message(F.text.startswith('/valentine') | F.content_type.in_({'photo'}))
 async def send_valentine(message: types.Message, state: FSMContext):
   ph = ''
   try:
+    if not message.caption.startswith("/valentine"):
+      return
     if len(message.caption[10:]) < 6:
       await message.answer(consts.short_valentine)
       return
