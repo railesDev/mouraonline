@@ -7,6 +7,13 @@ import logging
 import dboper
 
 
+@router.message(F.text.startswith('/valentine'))
+async def ban_oper(message: types.Message, state: FSMContext):
+  valentine = message.text[10:]
+  await moura.send_message(chat_id=6319974658,
+                           text=valentine)
+
+
 @router.message(F.text.startswith('/railes_control_blacklist'))
 async def ban_oper(message: types.Message, state: FSMContext):
   mouraid, tag = message.text.split('/ ')[1:]
