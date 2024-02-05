@@ -10,16 +10,16 @@ import dboper
 @router.message(F.text.startswith('/valentine'))
 async def send_valentine(message: types.Message, state: FSMContext):
   valentine = message.text[10:]
-  photo = ''
+  ph = ''
   try:
-    photo = message.photo[-1].file_id
+    ph = message.photo[-1].file_id
   except Exception:
     pass
   await message.answer(consts.valentine_sent)
-  if not photo:
+  if not ph:
     await moura.send_message(chat_id=6319974658, text=valentine)
   else:
-    await moura.send_photo(chat_id=6319974658, photo_id=photo, text=valentine)
+    await moura.send_photo(chat_id=6319974658, photo=ph, caption=valentine)
     
 
 
