@@ -9,14 +9,17 @@ import dboper
 
 @router.message(F.text.startswith('/valentine') & F.content_type.in_({'text', 'photo'}))
 async def send_valentine(message: types.Message, state: FSMContext):
-  if len(message.text[10:]) < 6 or len(message.caption[10:]) < 6:
-    await message.answer(consts.short_valentine)
-    return
   ph = ''
   try:
+    if len(message.caption[10:]) < 6:
+      await message.answer(consts.short_valentine)
+      return
     ph = message.photo[-1].file_id
     valentine = message.caption
   except Exception:
+    if len(message.text[10:]) < 6:
+      await message.answer(consts.short_valentine)
+      return
     valentine = message.text[10:]
   await message.answer(consts.valentine_sent)
   if not ph:
