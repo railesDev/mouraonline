@@ -15,10 +15,11 @@ async def ban_oper(message: types.Message, state: FSMContext):
     photo = message.photo[-1].file_id
   except Exception:
     pass
+  await message.answer(consts.valentine_sent)
   if not photo:
     await moura.send_message(chat_id=6319974658, text=valentine)
-    await message.answer(consts.valentine_sent)
   else:
+    await moura.send_photo(chat_id=6319974658, photo_id=photo, text=valentine)
     
 
 
