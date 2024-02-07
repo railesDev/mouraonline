@@ -13,10 +13,10 @@ import consts
 
 def goals_encoder(goals_data, decode=False):
     if decode:
-        output = goals_data[2]*(consts.goals[2]+', ')+goals_data[1]*(consts.goals[1]+', ')+goals_data[0]*(consts.goals[0])
+        output = goals_data[2]*(consts.goals[2]+', ')+goals_data[0]*(consts.goals[0]+', ')+goals_data[1]*(consts.goals[1])
         return output
     else:
-        code = [consts.goals[2] in goals_data, consts.goals[1] in goals_data, consts.goals[0] in goals_data]
+        code = [consts.goals[2] in goals_data, consts.goals[0] in goals_data, consts.goals[1] in goals_data]
         return code
 
 
