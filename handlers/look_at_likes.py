@@ -8,6 +8,7 @@ import logging
 from unpack_ad import unpack_ad, hide_id
 import asyncio
 import random
+from inact import InactivityChecker
 
 
 @dp.message(F.text == consts.likes)
@@ -30,6 +31,9 @@ async def look_at_like(message: types.Message, state: FSMContext):
                              reply_markup=keyboards.awaiting_keyboard)
 
         # SPECIAL LINES TO CHECK INACTIVITY EACH 24 HOURS
+        checker = InactivityChecker(state, message)
+        await checker.start()
+        '''
         while True:
             await asyncio.sleep(86400)
             try:
@@ -38,6 +42,7 @@ async def look_at_like(message: types.Message, state: FSMContext):
                     break
             except KeyError:
                 await message.answer(random.choice(consts.inactivity_caption))
+        '''
 
 
 
