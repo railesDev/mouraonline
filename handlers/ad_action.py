@@ -6,6 +6,7 @@ import consts
 import keyboards
 import random
 import asyncio
+from inact import InactivityChecker
 
 
 @router.message(
@@ -30,14 +31,16 @@ async def perform_action(message: types.Message, state: FSMContext):
         await state.update_data(awaiting=-1)
 
         # SPECIAL LINES TO CHECK INACTIVITY EACH 24 HOURS
-        while True:
+        '''while True:
             await asyncio.sleep(86400)
             try:
                 data = await state.get_data()
                 if data['awaiting'] > 0:
                     break
             except KeyError:
-                await message.answer(random.choice(consts.inactivity_caption))
+                await message.answer(random.choice(consts.inactivity_caption))'''
+        checker = InactivityChecker(state, message)
+        await checker.start()
 
     elif message.text == consts.actions[1]:
         dboper.react(conn, c, message.from_user.id, data["awaiting"], 0)
@@ -48,14 +51,17 @@ async def perform_action(message: types.Message, state: FSMContext):
         await state.update_data(awaiting=-1)
 
         # SPECIAL LINES TO CHECK INACTIVITY EACH 24 HOURS
-        while True:
+        checker = InactivityChecker(state, message)
+        await checker.start()
+        
+        '''while True:
             await asyncio.sleep(86400)
             try:
                 data = await state.get_data()
                 if data['awaiting'] > 0:
                     break
             except KeyError:
-                await message.answer(random.choice(consts.inactivity_caption))
+                await message.answer(random.choice(consts.inactivity_caption))'''
 
     elif message.text == consts.actions[0]:
         dboper.react(conn, c, message.from_user.id, data["awaiting"], 0)
@@ -65,6 +71,11 @@ async def perform_action(message: types.Message, state: FSMContext):
         await state.update_data(awaiting=-1)
 
         # SPECIAL LINES TO CHECK INACTIVITY EACH 24 HOURS
+
+        checker = InactivityChecker(state, message)
+        await checker.start()
+        
+        '''
         while True:
             await asyncio.sleep(86400)
             try:
@@ -72,4 +83,4 @@ async def perform_action(message: types.Message, state: FSMContext):
                 if data['awaiting'] > 0:
                     break
             except KeyError:
-                await message.answer(random.choice(consts.inactivity_caption))
+                await message.answer(random.choice(consts.inactivity_caption))'''
