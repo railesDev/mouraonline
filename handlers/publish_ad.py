@@ -9,6 +9,7 @@ import asyncio
 import random
 import logging
 import consts
+from inact import InactivityChecker
 
 
 def goals_encoder(goals_data, decode=False):
@@ -39,6 +40,9 @@ async def register_finishing(message: types.Message, state: FSMContext):
     await state.set_state(User.awaiting)
 
     # SPECIAL LINES TO CHECK INACTIVITY EACH 24 HOURS
+    checker = InactivityChecker(state, message)
+    await checker.start()
+    '''
     while True:
         await asyncio.sleep(86400)
         try:
@@ -47,3 +51,4 @@ async def register_finishing(message: types.Message, state: FSMContext):
                 pass
         except KeyError:
             await message.answer(random.choice(consts.inactivity_caption))
+    '''
