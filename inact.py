@@ -1,3 +1,5 @@
+import asyncio
+
 class InactivityChecker:
     def __init__(self, state, message):
         self.state = state
