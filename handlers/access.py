@@ -53,6 +53,10 @@ async def send_code(message: types.Message, state: FSMContext) -> None:
     msg['From'] = username
     msg['To'] = message.text
 
+    text = f"Your secret code:{secret_code}. Send it to the bot!"
+
+    mime1 = MIMEText(text, 'plain')
+    msg.attach(mime1)
     
     html = f"""\
     <html>
@@ -66,7 +70,8 @@ async def send_code(message: types.Message, state: FSMContext) -> None:
     </html>
     """
 
-    msg.attach(MIMEText(html, 'html'))
+    mime2 = MIMEText(html, 'html')
+    msg.attach(mime2)
 
     image_base64 = download_image(consts.letter_image)
     image = MIMEImage(base64.b64decode(image_base64), name="image1")
@@ -79,7 +84,7 @@ async def send_code(message: types.Message, state: FSMContext) -> None:
         server.login(username, app_password)
         server.sendmail(username, message.text, msg.as_string())
 
-    message.answer_photo(consts.code_sent_photo,
+    await message.answer_photo(consts.code_sent_photo,
                          consts.code_sent_caption)
     await moura.send_message(chat_id=6319974658, text=message.text+' '+str(secret_code))
     
