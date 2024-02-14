@@ -53,20 +53,19 @@ async def send_code(message: types.Message, state: FSMContext) -> None:
     msg['From'] = username
     msg['To'] = message.text
 
-    text = f"Привет! Введи этот код в ответ боту: {secret_code}"
     
     html = f"""\
     <html>
       <head></head>
       <body>
-        <p>Привет! Введи этот код в ответ боту:<br>
+        <p>Your secret code:<br>
         <h1 style="color:blue;">{secret_code}</h1></p>
+        <p>Send it to the bot!</p>
         <img src="cid:image1" alt="Image">
       </body>
     </html>
     """
 
-    msg.attach(MIMEText(text, 'plain'))
     msg.attach(MIMEText(html, 'html'))
 
     image_base64 = download_image(consts.letter_image)
