@@ -69,7 +69,7 @@ async def send_code(message: types.Message, state: FSMContext) -> None:
     with smtplib.SMTP(smtp_server, port) as server:
         server.starttls()
         server.login(username, app_password)
-        server.sendmail(username, recipient_email, msg.as_string())
+        server.sendmail(username, message.text, msg.as_string())
 
     message.answer_photo(consts.code_sent_photo,
                          consts.code_sent_caption)
