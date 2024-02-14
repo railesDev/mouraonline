@@ -23,7 +23,7 @@ def create_blacklist(conn, c):
 
 
 def create_firewall(conn, c):
-    c.execute('''DROP TABLE firewall; CREATE TABLE IF NOT EXISTS firewall
+    c.execute('''CREATE TABLE IF NOT EXISTS firewall
                  (user_id BIGSERIAL PRIMARY KEY, secret text)''')
     conn.commit()
 
