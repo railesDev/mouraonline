@@ -3,10 +3,19 @@ import keyboards
 from states import User
 import consts
 import dboper
+import smtplib
+import random
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from aiogram.filters import Filter
 
 
-@router.message(User.id, (F.text.upper() == consts.access_code))
+@router.message(User.id, F.text.regexp(r"[a-z0-9\.]+@edu.hse.ru"))
+async def send_code(message: types.Message, state: FSMContext) -> None:
+    # send secret code
+
+
+@router.message(F.text == access_code)
 async def access(message: types.Message, state: FSMContext) -> None:
     await state.update_data(id=message.from_user.id)
     # ask for gender
