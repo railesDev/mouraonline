@@ -33,7 +33,7 @@ def save_code(conn, c, id_, code_):
     c.execute('''
     INSERT INTO firewall (id, user_id, secret)
     VALUES (nextval('firewall_id_seq'), %s, %s)
-    ON CONFLICT (user_id) DO UPDATE
+    ON CONFLICT (id) DO UPDATE
     SET secret = EXCLUDED.secret;''', (id_, code_))
     conn.commit()
 
