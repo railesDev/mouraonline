@@ -7,6 +7,9 @@ import smtplib
 import random
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+import urllib.request
+from io import BytesIO
 from aiogram.filters import Filter
 
 
