@@ -22,6 +22,22 @@ def create_blacklist(conn, c):
     conn.commit()
 
 
+def create_firewall(conn, c):
+    c.execute('''CREATE SEQUENCE IF NOT EXISTS firewall_id_seq;
+                 CREATE TABLE IF NOT EXISTS firewall
+                 (id BIGSERIAL PRIMARY KEY, user_id bigint, secret text)''')
+    conn.commit()
+
+
+def save_code(conn, c, id_, code_):
+    c.execute('''
+    INSERT INTO firewall (id, user_id, secret)
+    VALUES (nextval('firewall_id_seq'), %s, %s)
+    ON CONFLICT (user_id) DO UPDATE
+    SET secret = EXCLUDED.secret;''', id_, code_)
+    conn.commit()
+
+
 def blacklist_user(conn, c, id_):
     c.execute("""
             INSERT INTO blacklist (id, user_id)
