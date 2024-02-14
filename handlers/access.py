@@ -18,10 +18,24 @@ def generate_secret_code(length=6):
 
 
 def download_image(url):
-    response = urllib.request.urlopen(url)
-    image_data = response.read()
-    image = MIMEImage(image_data)
-    return image
+    def download_image(url):
+    # Set a user-agent header to mimic a web browser
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+    }
+    request = urllib.request.Request(url, headers=headers)
+    
+    try:
+        with urllib.request.urlopen(request) as response:
+            image_data = response.read()
+            image = MIMEImage(image_data)
+            return image
+    except urllib.error.HTTPError as e:
+        print(f"HTTP Error {e.code}: {e.reason}")
+        return None
+    except urllib.error.URLError as e:
+        print(f"URL Error: {e.reason}")
+        return None
 
 
 @router.message(User.id, F.text.regexp(r"[a-z0-9\.]+@edu.hse.ru"))
