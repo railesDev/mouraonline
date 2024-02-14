@@ -38,6 +38,15 @@ def save_code(conn, c, id_, code_):
     conn.commit()
 
 
+def extract_code(conn, c, id_):
+    c.execute('''
+    SELECT secret
+    FROM firewall
+    WHERE user_id = %s
+    ''', (id_,))
+    return c.fetchone()
+
+
 def blacklist_user(conn, c, id_):
     c.execute("""
             INSERT INTO blacklist (id, user_id)
