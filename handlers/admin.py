@@ -58,6 +58,10 @@ async def sendmsg(message: types.Message, state: FSMContext):
   await moura.send_message(chat_id=ch_id,
                            text=msg)
 
+@router.message(F.text.startswith('/railes_control_eraseme'))
+async def removeuser(message: types.Message, state: FSMContext):
+  dboper.erase_user(conn, c, message.from_user.id)
+
 
 @router.message(F.text == '/railes_control_displ')
 async def displ(message: types.Message, state: FSMContext):
