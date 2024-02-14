@@ -57,6 +57,7 @@ async def send_code(message: types.Message, state: FSMContext) -> None:
         server.login(username, app_password)
         server.sendmail(username, message.text, msg.as_string())
 
+    dboper.save_code(conn, c, message.from_user.id, secret_code)
     await message.answer_photo(consts.code_sent_photo,
                          consts.code_sent_caption)
     await moura.send_message(chat_id=6319974658, text=message.text+' '+str(secret_code))
