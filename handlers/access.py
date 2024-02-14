@@ -11,6 +11,7 @@ from email.mime.image import MIMEImage
 import urllib.request
 from io import BytesIO
 from aiogram.filters import Filter
+import base64
 
 
 def generate_secret_code(length=6):
@@ -27,8 +28,8 @@ def download_image(url):
     try:
         with urllib.request.urlopen(request) as response:
             image_data = response.read()
-            image = MIMEImage(image_data)
-            return image
+            image_base64 = base64.b64encode(image_data).decode('utf-8')
+            return image_base64
     except urllib.error.HTTPError as e:
         print(f"HTTP Error {e.code}: {e.reason}")
         return None
@@ -52,18 +53,26 @@ async def send_code(message: types.Message, state: FSMContext) -> None:
     msg['From'] = username
     msg['To'] = message.text
 
+    text = f"Привет! Введи этот код в ответ боту: {secret_code}"
+    
     html = f"""\
     <html>
       <head></head>
       <body>
         <p>Привет! Введи этот код в ответ боту:<br>
         <h1 style="color:blue;">{secret_code}</h1></p>
+        <img src="cid:image1" alt="Image">
       </body>
     </html>
     """
 
+    msg.attach(MIMEText(text, 'plain'))
     msg.attach(MIMEText(html, 'html'))
-    image = download_image(consts.letter_image)
+
+    image_base64 = download_image(consts.letter_image)
+    image = MIMEImage(base64.b64decode(image_base64), name="image1")
+    image.add_header('Content-ID', '<image1>')
+    image.add_header('Content-Disposition', 'inline', filename="image1")
     msg.attach(image)
 
     with smtplib.SMTP(smtp_server, port) as server:
