@@ -40,7 +40,7 @@ def save_code(conn, c, id_, code_):
 
 def extract_code(conn, c, id_):
     c.execute('''
-    SELECT user_id, secret
+    SELECT secret
     FROM firewall
     WHERE user_id = %s
     ''', (id_,))
