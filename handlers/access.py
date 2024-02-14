@@ -14,7 +14,7 @@ from aiogram.filters import Filter
 import base64
 
 
-def generate_secret_code(length=6):
+def generate_secret_code(length=5):
     return (''.join(random.choice('0123456789ABCDEF') for _ in range(length)))+'MU27'
 
 
