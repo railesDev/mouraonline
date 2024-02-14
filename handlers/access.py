@@ -29,6 +29,8 @@ async def send_code(message: types.Message, state: FSMContext) -> None:
     username = "raymourahse@gmail.com"
     app_password = "oymd ahwv ywgv jpmx"
 
+    secret_code = generate_secret_code()
+
     msg = MIMEMultipart('alternative')
     msg['Subject'] = "Мура - Секретный код для входа"
     msg['From'] = username
