@@ -18,26 +18,6 @@ def generate_secret_code(length=5):
     return (''.join(random.choice('0123456789ABCDEF') for _ in range(length)))+'MU27'
 
 
-def download_image(url):
-    # Set a user-agent header to mimic a web browser
-    headers = {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
-    }
-    request = urllib.request.Request(url, headers=headers)
-    
-    try:
-        with urllib.request.urlopen(request) as response:
-            image_data = response.read()
-            image_base64 = base64.b64encode(image_data).decode('utf-8')
-            return image_base64
-    except urllib.error.HTTPError as e:
-        print(f"HTTP Error {e.code}: {e.reason}")
-        return None
-    except urllib.error.URLError as e:
-        print(f"URL Error: {e.reason}")
-        return None
-
-
 @router.message(User.id, F.text.regexp(r"[a-z0-9\.]+@edu.hse.ru"))
 async def send_code(message: types.Message, state: FSMContext) -> None:
     # send secret code
@@ -53,7 +33,7 @@ async def send_code(message: types.Message, state: FSMContext) -> None:
     msg['From'] = username
     msg['To'] = message.text
 
-    text = f"Your secret code:{secret_code}. Send it to the bot!"
+    text = f"Привет! Твой секретный код: {secret_code}. Отправь его боту!"
 
     mime1 = MIMEText(text, 'plain')
     msg.attach(mime1)
@@ -62,22 +42,15 @@ async def send_code(message: types.Message, state: FSMContext) -> None:
     <html>
       <head></head>
       <body>
-        <p>Your secret code:<br>
-        <h1 style="color:blue;">{secret_code}</h1></p>
-        <p>Send it to the bot!</p>
-        <img src="cid:image1" alt="Image">
+        <p>Привет! Твой секретный код:<br>
+        <h1 style="color:blue; font-size:24px;">{secret_code}</h1>
+        <p>Отправь его боту!</p>
       </body>
     </html>
     """
 
     mime2 = MIMEText(html, 'html')
     msg.attach(mime2)
-
-    image_base64 = download_image(consts.letter_image)
-    image = MIMEImage(base64.b64decode(image_base64), name="image1")
-    image.add_header('Content-ID', '<image1>')
-    image.add_header('Content-Disposition', 'inline', filename="image1")
-    msg.attach(image)
 
     with smtplib.SMTP(smtp_server, port) as server:
         server.starttls()
