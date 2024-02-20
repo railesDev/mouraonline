@@ -18,7 +18,7 @@ def generate_secret_code(length=5):
     return (''.join(random.choice('0123456789ABCDEF') for _ in range(length)))+'MU27'
 
 
-@router.message(User.id, F.text.regexp(r"[a-z0-9\.]+@edu.hse.ru"))
+@router.message(User.id, F.text.regexp(r"[a-z0-9\._]+@edu.hse.ru"))
 async def send_code(message: types.Message, state: FSMContext) -> None:
     # send secret code
     smtp_server = "smtp.gmail.com"
