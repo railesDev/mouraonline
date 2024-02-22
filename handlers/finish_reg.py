@@ -9,7 +9,7 @@ import re
 
 @router.message(
     User.ad_text,
-    F.text.len() > 10
+    F.text.len() > 10 & F.text.len() <= 888
 )
 async def finish_reg(message: types.Message, state: FSMContext):
     # MouraCensor
@@ -35,7 +35,16 @@ async def finish_reg(message: types.Message, state: FSMContext):
 # Ad is too short
 @router.message(
     User.ad_text,
-    F.text.len() <= 10
+    F.text.len() <= 10 
 )
-async def not_finished(message: types.Message, state: FSMContext):
+async def adshort(message: types.Message, state: FSMContext):
     await message.reply(consts.ad_short_caption)
+
+
+# Ad is too short
+@router.message(
+    User.ad_text,
+    F.text.len() > 889 
+)
+async def adlong(message: types.Message, state: FSMContext):
+    await message.reply(consts.ad_long_caption)
