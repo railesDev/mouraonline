@@ -8,7 +8,6 @@ import re
 
 
 @router.message(
-    F.text.len() > 10 & F.text.contains(' ') & F.text.len() < 750
     User.ad_text,
 )
 async def finish_reg(message: types.Message, state: FSMContext):
@@ -17,7 +16,7 @@ async def finish_reg(message: types.Message, state: FSMContext):
     stop_words = ' '
     m = message.text.lower()
     p = re.compile(r'(ук([раинаеойцы]{3,}))|(putin)|(пися\s)|(попа\s)|(россия)|(рашка)|(раися)|(путин[уа]*)|(навальн[ыйому]+)|(укропы)|(\sлох)|(\sсука)|(ебал)|(ебать)|(ху[йея])|(хер)|(пизд)|(пидор)|(пидар)|(гандон)|(твар[иь])|(\sненави)|(суицид)|(гнида)|(сос[ауёеи])|(\sсекс)|(\sпереспать)|(\sтрахну)|(ебу)|(еб\s)|(ёб\s)|(войду)|(куни)|(член)|(пенис)|(сиськи)|(za\s)|(лизать)|(дурак)|(идиот)|(жирный)|(урод)|(говно)|(дерьмо)|(параша)|(хохл)|(бля)|(тво[яюе] мат)|(твой батя)|(иди\s)')
-    suitable = not bool(len(p.findall(m)))
+    suitable = not bool(len(p.findall(m))) & message.text.len() > 10 & message.text.contains(' ') & message.text.len() < 750
     #
     if suitable:
         await state.update_data(ad_text=message.text)
@@ -31,7 +30,7 @@ async def finish_reg(message: types.Message, state: FSMContext):
     else:
         await message.reply(consts.ad_incorrect_caption)
 
-
+'''
 # Ad is too short
 @router.message(
     User.ad_text,
@@ -48,3 +47,5 @@ async def adshort(message: types.Message, state: FSMContext):
 )
 async def adlong(message: types.Message, state: FSMContext):
     await message.reply(consts.ad_long_caption)
+
+'''
