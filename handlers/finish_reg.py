@@ -9,7 +9,7 @@ import re
 
 @router.message(
     User.ad_text,
-    F.text.len() > 10 & F.text.len() <= 888 & ' ' in F.text
+    F.text.len() > 10 & F.text.contains(' ') & F.text.le() < 500
 )
 async def finish_reg(message: types.Message, state: FSMContext):
     # MouraCensor
