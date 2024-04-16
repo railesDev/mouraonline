@@ -16,7 +16,7 @@ async def finish_reg(message: types.Message, state: FSMContext):
     stop_words = ' '
     m = message.text.lower()
     p = re.compile(r'(ук([раинаеойцы]{3,}))|(putin)|(пися\s)|(попа\s)|(россия)|(рашка)|(раися)|(путин[уа]*)|(навальн[ыйому]+)|(укропы)|(\sлох)|(\sсука)|(ебал)|(ебать)|(ху[йея])|(хер)|(пизд)|(пидор)|(пидар)|(гандон)|(твар[иь])|(\sненави)|(суицид)|(гнида)|(сос[ауёеи])|(\sсекс)|(\sпереспать)|(\sтрахну)|(ебу)|(еб\s)|(ёб\s)|(войду)|(куни)|(член)|(пенис)|(сиськи)|(za\s)|(лизать)|(дурак)|(идиот)|(жирный)|(урод)|(говно)|(дерьмо)|(параша)|(хохл)|(бля)|(тво[яюе] мат)|(твой батя)|(иди\s)')
-    suitable = not bool(len(p.findall(m))) and len(message.text) > 50 and ' ' in message.text & len(message.text) <= 350
+    suitable = not bool(len(p.findall(m))) and len(message.text) > 50 and ' ' in message.text and len(message.text) <= 350
     #
     if suitable:
         await state.update_data(ad_text=message.text)
