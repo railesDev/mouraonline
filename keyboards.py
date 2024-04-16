@@ -180,6 +180,7 @@ tinder_kb = [
     [types.KeyboardButton(text=consts.actions[1]),
      types.KeyboardButton(text=consts.actions[2])],
     [types.KeyboardButton(text=consts.actions[0])],
+    [types.KeyboardButton(text=consts.actions[4])],    
     ]
 
 tinder_keyboard = types.ReplyKeyboardMarkup(keyboard=tinder_kb,
