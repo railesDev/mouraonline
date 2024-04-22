@@ -15,6 +15,11 @@ def fill_questions_table(conn, c, file_path):
     conn.commit()
 
 
+def is_cheater(conn, c, user_id):
+    c.execute("SELECT 1 FROM resps WHERE user_id = %s", (user_id,))
+    return cur.fetchone() is not None
+
+
 def get_question(conn, c, user_id, username):
     c.execute("SELECT id, question FROM questions WHERE used = 0 OR (used = 1 AND NOT EXISTS (SELECT 1 FROM resps WHERE q_id = questions.id AND user_id = %s)) ORDER BY used DESC, id LIMIT 1", (user_id,))
     result = c.fetchone()
