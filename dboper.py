@@ -17,7 +17,7 @@ def fill_questions_table(conn, c, file_path):
 
 def is_cheater(conn, c, user_id):
     c.execute("SELECT 1 FROM resps WHERE user_id = %s", (user_id,))
-    return cur.fetchone() is not None
+    return c.fetchone() is not None
 
 
 def get_question(conn, c, user_id, username):
