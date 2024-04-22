@@ -1,6 +1,6 @@
 female_anon_photo_id = 'AgACAgIAAxkBAAIGJmVNcnV831dIx07HTQQayc5tk8bnAAI01DEb0oFxSvQ-2w8nblOoAQADAgADeQADMwQ'
 male_anon_photo_id = 'AgACAgIAAxkBAAIQxGVQA6sCMjjYnNgsUaCdusBZB4xyAAITzjEb7JSASjy2e7xU6PkMAQADAgADeQADMwQ'
-
+moura_channel_photo_id = 'AgACAgQAAxkBAAEB_xRmJmrBk2op0ZbGbxVXUFUEL1hlTQACdMMxGzAgMVE1sOBCUBi0egEAAwIAA3kAAzQE'
 inactivity_caption = ["Хэй, ты тут? Мне грустно без тебя:(",
                       "Нажмешь на мои кнопочки?",
                       "Вернемся в мир Муры?",
