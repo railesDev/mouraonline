@@ -32,7 +32,7 @@ async def save_answer(message: types.Message, state: FSMContext):
       await message.answer(username+' '+ans)
       break
     else:
-      asyncio.sleep(200)
+      await asyncio.sleep(200)
       
 
 
