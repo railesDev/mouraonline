@@ -25,6 +25,15 @@ async def give_question(message: Message, state: FSMContext):
 async def save_answer(message: types.Message, state: FSMContext):
   dboper.update_answer(conn, c, message.from_user.id, message.text)
   await message.answer('Ждем, когда другой ответит на тот же вопрос!')
+  while True:
+    resp = dboper.search_pair(conn, c, message.from_user.id)
+    if resp is not None:
+      username, ans = resp
+      await message.answer(username+' '+ans)
+      break
+    else:
+      asyncio.sleep(200)
+      
 
 
 @router.message(
