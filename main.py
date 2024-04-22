@@ -26,6 +26,7 @@ dboper.create_reactions(conn, c)
 dboper.create_blacklist(conn, c)
 dboper.create_firewall(conn, c)
 dboper.create_questions(conn, c)
+dboper.fill_questions_table(conn, c, 'questions.txt')
 dboper.create_resps(conn, c)
 
 
