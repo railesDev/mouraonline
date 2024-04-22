@@ -31,7 +31,9 @@ def update_answer(conn, c, user_id, ans):
     conn.commit()
 
 def search_pair(conn, c, user_id):
-    c.execute("SELECT username, ans FROM resps WHERE q_id IN (SELECT id FROM questions WHERE used = 2) AND user_id != %s", (user_id,))
+    c.execute("SELECT q_id FROM resps WHERE user_id = %s", (user_id,))
+    q_id = c.fetchone()[0]
+    c.execute("SELECT username, ans FROM resps WHERE %s IN (SELECT id FROM questions WHERE used = 2) AND user_id != %s", (q_id, user_id,))
     result = c.fetchone()
     if result:
         return result
