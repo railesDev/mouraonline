@@ -5,6 +5,16 @@ from bot import c, conn
 import consts
 import logging
 import dboper
+import asyncio
+
+
+@router.message(F.text.startswith('/railes_control_msgall'))
+async def spam(message: types.Message, state: FSMContext):
+  text = message[23:]
+  ids = get_all_ids(conn, c)
+  for id in ids:
+    return
+    
 
 
 @router.message(F.text.startswith('/valentine') | F.content_type.in_({'photo'}))
