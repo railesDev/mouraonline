@@ -8,7 +8,7 @@ class InactivityChecker:
 
     async def check_inactivity(self):
         while True:
-            await asyncio.sleep(86400)
+            await asyncio.sleep(86400*5)
             try:
                 data = await self.state.get_data()
                 if data['awaiting'] > 0:
