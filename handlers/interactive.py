@@ -12,7 +12,7 @@ import random
 async def give_question(message: types.Message, state: FSMContext):
   if dboper.is_cheater(conn, c, message.from_user.id):
     await message.answer('Вопрос можно получить только один. Ответь, пожалуйста!')
-    break
+    return
   if not " @" in message.text or len(str(message.text)[4:]) < 4:
     await message.answer('Введи "/q @свойюзернейм"')
   else:
