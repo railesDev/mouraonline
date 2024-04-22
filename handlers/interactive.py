@@ -35,7 +35,7 @@ async def save_answer(message: types.Message, state: FSMContext):
     if resp is not None:
       username, ans = resp
       await message.answer_photo(consts.inter_ending, consts.inter_finish+username+consts.inter_finish_+ans+consts.inter_final)
-      break
+      return
     else:
       await asyncio.sleep(30)
       
