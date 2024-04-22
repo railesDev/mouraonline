@@ -33,6 +33,12 @@ def create_firewall(conn, c):
     conn.commit()
 
 
+def create_questions(conn, c):
+    c.execute('''CREATE TABLE IF NOT EXISTS questions
+                 (id BIGSERIAL PRIMARY KEY, question text, userone text, ansone text, usertwo text, anstwo text)''')
+    conn.commit()
+
+
 def save_code(conn, c, id_, code_):
     c.execute('''
     INSERT INTO firewall (user_id, secret)
