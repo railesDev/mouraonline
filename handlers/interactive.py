@@ -18,7 +18,7 @@ async def give_question(message: types.Message, state: FSMContext):
   else:
     await state.set_state(Interactive.id)
     question = dboper.get_question(conn, c, message.from_user.id, str(message.text)[3:])
-    await message.answer(consts.inter_question+question+consts.inter_question_, reply_markup=ReplyKeyboardRemove())
+    await message.answer_photo(consts.inter_intro, consts.inter_question+question+consts.inter_question_, reply_markup=ReplyKeyboardRemove())
   
 
 @router.message(
@@ -34,7 +34,7 @@ async def save_answer(message: types.Message, state: FSMContext):
     resp = dboper.search_pair(conn, c, message.from_user.id)
     if resp is not None:
       username, ans = resp
-      await message.answer(consts.inter_finish+username+consts.inter_finish_+ans+consts.inter_final)
+      await message.answer_photo(consts.inter_ending, consts.inter_finish+username+consts.inter_finish_+ans+consts.inter_final)
       break
     else:
       await asyncio.sleep(30)
