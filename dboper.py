@@ -1,7 +1,7 @@
 import random
 import logging
 
-def fill_questions_table(conn, c, 'questions.txt'):
+def fill_questions_table(conn, c, file_path):
     with open(file_path, 'r') as file:
         for line in file:
             question = line.strip()
