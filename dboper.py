@@ -2,6 +2,11 @@ import random
 import logging
 
 
+def get_all_ids(conn, c):
+    c.execute('''SELECT id FROM users''')
+    return [user_id[0] for user_id in c.fetchall()]
+
+
 def create_users(conn, c):
     c.execute('''CREATE TABLE IF NOT EXISTS users
                  (id BIGSERIAL PRIMARY KEY, gender integer, campus text, program text, course text, frd_goal boolean, dts_goal boolean, ntw_goal boolean, gender_goals integer, photo_id text, ad_text text)''')
