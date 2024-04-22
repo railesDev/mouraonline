@@ -3,7 +3,8 @@ import logging
 
 def reset_interactive(conn, c):
     c.execute("DELETE FROM resps")
-    c.execute("UPDATE questions SET used = 0")
+    c.execute("DELETE FROM questions")
+    # c.execute("UPDATE questions SET used = 0")
     conn.commit()
 
 def fill_questions_table(conn, c, file_path):
