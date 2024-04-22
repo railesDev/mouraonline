@@ -1,7 +1,7 @@
 import random
 import logging
 
-def reset_tables(conn, c):
+def reset_interactive(conn, c):
     c.execute("DELETE FROM resps")
     c.execute("UPDATE questions SET used = 0")
     conn.commit()
