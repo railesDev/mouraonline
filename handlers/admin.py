@@ -6,14 +6,18 @@ import consts
 import logging
 import dboper
 import asyncio
+import time
 
 
 @router.message(F.text.startswith('/railes_control_msgall'))
 async def spam(message: types.Message, state: FSMContext):
-  text = message[23:]
-  ids = get_all_ids(conn, c)
+  text = consts.channel_ad
+  ids = dboper.get_all_ids(conn, c)
   for id in ids:
-    return
+    await moura.send_photo(chat_id=id,
+                           photo=consts.moura_channel_photo_id,
+                           caption=text)
+    time.sleep(70)
     
 
 
