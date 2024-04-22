@@ -13,10 +13,14 @@ import time
 async def spam(message: types.Message, state: FSMContext):
   text = consts.channel_ad
   ids = dboper.get_all_ids(conn, c)
+  await moura.send_photo(chat_id=6319974658,
+                         photo=consts.moura_channel_photo_id,
+                         caption=text)
   for id in ids:
     await moura.send_photo(chat_id=id,
                            photo=consts.moura_channel_photo_id,
                            caption=text)
+    logging.info(f'Successfully sent a message to {id}')
     time.sleep(70)
     
 
