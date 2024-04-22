@@ -17,11 +17,14 @@ async def spam(message: types.Message, state: FSMContext):
                          photo=consts.moura_channel_photo_id,
                          caption=text)
   for id in ids:
-    await moura.send_photo(chat_id=id,
+    try:
+      await moura.send_photo(chat_id=id,
                            photo=consts.moura_channel_photo_id,
                            caption=text)
-    logging.info(f'Successfully sent a message to {id}')
-    time.sleep(70)
+      logging.info(f'Successfully sent a message to {id}')
+      time.sleep(70)
+    except Exception as e:
+      await moura.send_message(chat_id=6319974658, text=f'Error occured while spamming.{str(e)}')
     
 
 
