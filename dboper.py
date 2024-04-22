@@ -33,7 +33,7 @@ def get_question(conn, c, user_id, username):
         return None
 
 def update_answer(conn, c, user_id, ans):
-    c.execute("UPDATE resps SET ans = %s WHERE user_id = %s AND q_id IN (SELECT id FROM questions WHERE used = 2)", (ans, user_id))
+    c.execute("UPDATE resps SET ans = %s WHERE user_id = %s AND q_id IN (SELECT id FROM questions WHERE used = 1)", (ans, user_id))
     conn.commit()
 
 def search_pair(conn, c, user_id):
