@@ -1,6 +1,11 @@
 import random
 import logging
 
+def reset_tables(conn, c):
+    c.execute("DELETE FROM resps")
+    c.execute("UPDATE questions SET used = 0")
+    conn.commit()
+
 def fill_questions_table(conn, c, file_path):
     with open(file_path, 'r') as file:
         for line in file:
