@@ -35,7 +35,13 @@ def create_firewall(conn, c):
 
 def create_questions(conn, c):
     c.execute('''CREATE TABLE IF NOT EXISTS questions
-                 (id BIGSERIAL PRIMARY KEY, question text, userone text, ansone text, usertwo text, anstwo text)''')
+                 (id BIGSERIAL PRIMARY KEY, question text, used integer)''')
+    conn.commit()
+
+
+def create_resps(conn, c):
+    c.execute('''CREATE TABLE IF NOT EXISTS resps
+                 (user_id BIGSERIAL PRIMARY KEY, username text, q_id BIGSERIAL, ans text)''')
     conn.commit()
 
 
