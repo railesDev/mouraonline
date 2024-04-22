@@ -41,7 +41,7 @@ def search_pair(conn, c, user_id):
     q_id = c.fetchone()[0]
     c.execute("SELECT username, ans FROM resps WHERE %s IN (SELECT id FROM questions WHERE used = 2) AND user_id != %s", (q_id, user_id,))
     result = c.fetchone()
-    if result:
+    if len(result) > 1:
         return result
     else:
         return None
