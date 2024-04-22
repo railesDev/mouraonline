@@ -55,4 +55,5 @@ async def outsider(message: types.Message, state: FSMContext):
 @router.message(F.text.startswith('/railes_restart_interactive'))
 async def restart(message: types.Message, state: FSMContext):
   dboper.reset_interactive(conn, c)
+  dboper.fill_questions_table(conn, c, 'questions.txt')
   await moura.send_message(chat_id=6319974658, text="Successfully restarted interactive. Ask users to /start")
