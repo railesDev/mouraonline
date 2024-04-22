@@ -10,6 +10,7 @@ import random
 
 @router.message(F.text.startswith('/q'))
 async def give_question(message: types.Message, state: FSMContext):
+  await state.clear()
   if dboper.is_cheater(conn, c, message.from_user.id):
     await message.answer(consts.inter_cheater, reply_markup=ReplyKeyboardRemove())
     return
