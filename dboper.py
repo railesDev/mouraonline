@@ -32,21 +32,23 @@ def update_answer(conn, c, user_id, ans):
 
 def search_pair(conn, c, user_id):
     c.execute("SELECT username, ans FROM resps WHERE q_id IN (SELECT id FROM questions WHERE used = 2) AND user_id != %s", (user_id,))
-    result = cur.fetchone()
+    result = c.fetchone()
     if result:
         return result
     else:
         return None
 
 def check_outsider(conn, c):
-    cur.execute("SELECT COUNT(*) FROM questions WHERE used != 2")
-    result = cur.fetchone()
-    if result[0] > 0:
-        cur.execute("UPDATE questions SET used = 2 WHERE used != 2")
+    c.execute("SELECT id FROM questions WHERE used != 2 AND used != 0 LIMIT 1")
+    question_id = c.fetchone()
+    if question_id:
+        c.execute("SELECT user_id FROM resps WHERE q_id = %s", (question_id[0],))
+        user_id = c.fetchone()
+        c.execute("UPDATE questions SET used = 2 WHERE used != 2")
         conn.commit()
-        return True
+        return user_id[0]
     else:
-        return False
+        return None
 
 
 def get_all_ids(conn, c):
