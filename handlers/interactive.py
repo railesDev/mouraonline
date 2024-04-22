@@ -11,14 +11,14 @@ import random
 @router.message(F.text.startswith('/q'))
 async def give_question(message: types.Message, state: FSMContext):
   if dboper.is_cheater(conn, c, message.from_user.id):
-    await message.answer(consts.inter_cheater)
+    await message.answer(consts.inter_cheater, reply_markup=ReplyKeyboardRemove())
     return
   if not " @" in message.text or len(str(message.text)[4:]) < 4:
-    await message.answer(consts.inter_hint)
+    await message.answer(consts.inter_hint, reply_markup=ReplyKeyboardRemove())
   else:
     await state.set_state(Interactive.id)
     question = dboper.get_question(conn, c, message.from_user.id, str(message.text)[3:])
-    await message.answer(consts.inter_question+question+consts.inter_question_)
+    await message.answer(consts.inter_question+question+consts.inter_question_, reply_markup=ReplyKeyboardRemove())
   
 
 @router.message(
