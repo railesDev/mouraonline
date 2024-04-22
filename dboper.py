@@ -1,6 +1,48 @@
 import random
 import logging
 
+def fill_questions_table(conn, c, 'questions.txt'):
+    with open(file_path, 'r') as file:
+        for line in file:
+            question = line.strip()
+            c.execute("INSERT INTO questions (question, used) VALUES (%s, 0)", (question,))
+    conn.commit()
+
+
+def get_question(conn, c, user_id, username):
+    c.execute("SELECT id, question FROM questions WHERE used = 0 OR (used = 1 AND NOT EXISTS (SELECT 1 FROM resps WHERE q_id = questions.id AND user_id = %s)) ORDER BY used DESC, id LIMIT 1", (user_id,))
+    result = c.fetchone()
+    if result:
+        q_id, question = result
+        c.execute("UPDATE questions SET used = used + 1 WHERE id = %s", (q_id,))
+        c.execute("INSERT INTO resps (user_id, username, q_id) VALUES (%s, %s, %s)", (user_id, username, q_id))
+        conn.commit()
+        return question
+    else:
+        return None
+
+def update_answer(conn, c, user_id, ans):
+    c.execute("UPDATE resps SET ans = %s WHERE user_id = %s AND q_id IN (SELECT id FROM questions WHERE used = 2)", (ans, user_id))
+    conn.commit()
+
+def search_pair(conn, c, user_id):
+    c.execute("SELECT username, ans FROM resps WHERE q_id IN (SELECT id FROM questions WHERE used = 2) AND user_id != %s", (user_id,))
+    result = cur.fetchone()
+    if result:
+        return result
+    else:
+        return None
+
+def check_outsider(conn, c):
+    cur.execute("SELECT COUNT(*) FROM questions WHERE used != 2")
+    result = cur.fetchone()
+    if result[0] > 0:
+        cur.execute("UPDATE questions SET used = 2 WHERE used != 2")
+        conn.commit()
+        return True
+    else:
+        return False
+
 
 def get_all_ids(conn, c):
     c.execute('''SELECT id FROM users''')
