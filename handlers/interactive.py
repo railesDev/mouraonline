@@ -37,7 +37,7 @@ async def save_answer(message: types.Message, state: FSMContext):
       await message.answer(consts.inter_finish+username+consts.inter_finish_+ans)
       break
     else:
-      await asyncio.sleep(100)
+      await asyncio.sleep(30)
       
 
 
