@@ -8,6 +8,9 @@ import logging
 import asyncio
 import random
 
+inter_hint = 'Введи "/q @свойюзернейм"'
+
+
 @router.message(F.text.startswith('/q'))
 async def give_question(message: types.Message, state: FSMContext):
   if dboper.is_cheater(conn, c, message.from_user.id):
@@ -24,7 +27,7 @@ async def give_question(message: types.Message, state: FSMContext):
 @router.message(
     Interactive.id,
     F.text.len() > 10,
-    ~F.text.startswith('/q')
+    ~(F.text.startswith('/q'))
 )
 async def save_answer(message: types.Message, state: FSMContext):
   dboper.update_answer(conn, c, message.from_user.id, message.text)
