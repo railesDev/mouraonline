@@ -9,7 +9,7 @@ import asyncio
 import random
 
 @router.message(F.text.startswith('/q'))
-async def give_question(message: Message, state: FSMContext):
+async def give_question(message: types.Message, state: FSMContext):
   if not " @" in message.text or len(str(message.text)[4:]) < 4:
     await message.answer('Введи "/q @свойюзернейм"')
   else:
@@ -46,13 +46,13 @@ async def try_again(message: types.Message, state: FSMContext):
 
 # executed in the end. real end.
 @router.message(F.text.startswith('/railes_check_outsider'))
-async def outsider(message: Message, state: FSMContext):
+async def outsider(message: types.Message, state: FSMContext):
   outsider_id = dboper.check_outsider(conn, c)
   if outsider_id is not None:
     await moura.send_message(chat_id=outsider_id, text="В интерактиве поучаствовало нечетное количество человек, поэтому пары для тебя не нашлось. Хотя погоди, нет!\nТвой контакт на сегодня - мой! - @railesv)\nМожем покушать и поговорить за жизнь)")
 
 
 @router.message(F.text.startswith('/railes_restart_interactive'))
-async def restart(message: Message, state: FSMContext):
+async def restart(message: types.Message, state: FSMContext):
   dboper.reset_interactive(conn, c)
   await moura.send_message(chat_id=6319974658, text="Successfully restarted interactive. Ask users to /start")
