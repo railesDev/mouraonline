@@ -19,6 +19,4 @@ class User(StatesGroup):
 
 class Interactive(StatesGroup):
     id = State()
-    # chosen question won't be saved
-    awaiting_for_answer = State()
-    pairing = State() # found a pair
+    pairing = State()
