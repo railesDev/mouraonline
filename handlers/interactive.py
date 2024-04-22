@@ -25,6 +25,7 @@ async def give_question(message: types.Message, state: FSMContext):
 async def save_answer(message: types.Message, state: FSMContext):
   dboper.update_answer(conn, c, message.from_user.id, message.text)
   await message.answer('Ждем, когда другой ответит на тот же вопрос!')
+  await state.clear_state()
   while True:
     resp = dboper.search_pair(conn, c, message.from_user.id)
     if resp is not None:
