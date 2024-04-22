@@ -18,7 +18,7 @@ async def give_question(message: types.Message, state: FSMContext):
   else:
     await state.set_state(Interactive.id)
     question = dboper.get_question(conn, c, message.from_user.id, str(message.text)[3:])
-    await message.answer('Вот твой вопрос: '+question+'Отвечай нормально, пожалуйста')
+    await message.answer('Вот твой вопрос: '+question+'\nОтвечай нормально, пожалуйста')
   
 
 @router.message(
