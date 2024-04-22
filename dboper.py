@@ -26,7 +26,7 @@ def get_question(conn, c, user_id, username):
     if result:
         q_id, question = result
         c.execute("UPDATE questions SET used = used + 1 WHERE id = %s", (q_id,))
-        c.execute("INSERT INTO resps (user_id, username, q_id) VALUES (%s, %s, %s)", (user_id, username, q_id))
+        c.execute("INSERT INTO resps (user_id, username, q_id, ans) VALUES (%s, %s, %s, %s)", (user_id, username, q_id, '-'))
         conn.commit()
         return question
     else:
