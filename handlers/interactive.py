@@ -29,6 +29,7 @@ async def give_question(message: types.Message, state: FSMContext):
 )
 async def save_answer(message: types.Message, state: FSMContext):
   dboper.update_answer(conn, c, message.from_user.id, message.text)
+  dboper.update_answer(conn, c, message.from_user.id, message.text)
   await message.answer(consts.inter_waiting)
   await state.clear()
   while True:
