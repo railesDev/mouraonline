@@ -14,6 +14,12 @@ async def restart(message: types.Message, state: FSMContext):
   dboper.fill_questions_table(conn, c, 'questions.txt')
   await moura.send_message(chat_id=6319974658, text="Successfully restarted interactive. Ask users to /start")
 
+@router.message(F.text.startswith('/railes_control_restart'))
+async def restart_reactns(message: types.Message, state: FSMContext):
+  dboper.restart_reactions(conn, c)
+  await message.answer("Successfully restarted Moura. Now all the likes and matches are erased")
+
+
 @router.message(F.text.startswith('/railes_control_msgall'))
 async def spam(message: types.Message, state: FSMContext):
   text = consts.channel_ad
